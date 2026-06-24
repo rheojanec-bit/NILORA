@@ -7660,12 +7660,9 @@ var PIN_IMAGES = {
       clampAndApply();
     }
 
-    // Initial fit
+    // Initial fit — match the Reset View (Auto Zoom) default on load
     setTimeout(function() {
-      var canvasW = mapCanvas.offsetWidth;
-      scale = Math.min(canvasW / 1100, 0.85);
-      tx = 0; ty = 0;
-      clampAndApply();
+      resetView();
     }, 50);
 
     // Zoom buttons
