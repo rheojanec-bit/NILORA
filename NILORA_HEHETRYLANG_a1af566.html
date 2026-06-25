@@ -8240,7 +8240,14 @@ var PIN_IMAGES = {
     });
 
     panelClose.addEventListener('click', closePanel);
-    overlay.addEventListener('click', closePanel);
+    overlay.addEventListener('click', function() {
+      var villaPanel = document.getElementById('villaMapPanel');
+      if (villaPanel && villaPanel.classList.contains('open')) {
+        villaPanel.classList.remove('open');
+      } else {
+        closePanel();
+      }
+    });
 
     // panelDirections CTA — dynamically routes based on cat set in openPanel()
     var panelDirectionsBtn = document.getElementById('panelDirections');
@@ -8716,7 +8723,7 @@ var PIN_IMAGES = {
     vmpClose.addEventListener('click', function() {
       if (villaPanel) villaPanel.classList.remove('open');
       if (mapSidePanel) mapSidePanel.classList.remove('open');
-      if (mapOverlay) mapOverlay.classList.remove('active');
+      if (mapOverlay) mapOverlay.classList.remove('open');
     });
   }
 })();
