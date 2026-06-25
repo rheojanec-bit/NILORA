@@ -5188,7 +5188,7 @@ img {
   height: 100vh;
   background: var(--white);
   z-index: 102;
-  overflow-y: auto;
+  overflow: hidden;
   transition: right 0.38s cubic-bezier(0.4,0,0.2,1);
   box-shadow: -4px 0 40px rgba(0,0,0,0.28);
   display: flex;
@@ -5272,8 +5272,8 @@ img {
 .vmp-tab:hover:not(.active) { color: var(--dark-green); }
 
 /* Body */
-.vmp-body { flex: 1; display: flex; flex-direction: column; min-height: 0; }
-.vmp-plan-section { display: none; flex-direction: column; flex: 1; }
+.vmp-body { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.vmp-plan-section { display: none; flex-direction: column; }
 .vmp-plan-section.active { display: flex; }
 
 /* Plan canvas */
