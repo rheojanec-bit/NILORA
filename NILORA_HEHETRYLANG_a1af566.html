@@ -5204,13 +5204,10 @@ img {
   position: relative;
 }
 .vmp-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
   margin-bottom: 0.85rem;
 }
 .vmp-back {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   background: rgba(255,255,255,0.1);
@@ -5227,19 +5224,22 @@ img {
 }
 .vmp-back:hover { background: rgba(255,255,255,0.2); }
 .vmp-close {
-  margin-left: auto;
-  width: 30px;
-  height: 30px;
-  background: rgba(255,255,255,0.1);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.12);
   border: none;
   border-radius: 50%;
   color: var(--white);
-  font-size: 0.95rem;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
+  z-index: 2;
 }
 .vmp-close:hover { background: rgba(255,255,255,0.25); }
 .vmp-eyebrow { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.25rem; }
