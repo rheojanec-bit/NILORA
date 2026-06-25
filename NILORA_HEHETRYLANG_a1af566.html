@@ -5176,6 +5176,271 @@ img {
   .map-side-panel.open { bottom: 0; right: 0; }
 }
 
+/* ============================================================
+   VILLA MAP PANEL
+   ============================================================ */
+.villa-map-panel {
+  position: fixed;
+  top: 0;
+  right: -480px;
+  width: 460px;
+  max-width: 95vw;
+  height: 100vh;
+  background: var(--white);
+  z-index: 102;
+  overflow-y: auto;
+  transition: right 0.38s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: -4px 0 40px rgba(0,0,0,0.28);
+  display: flex;
+  flex-direction: column;
+}
+.villa-map-panel.open { right: 0; }
+
+/* Header */
+.vmp-header {
+  background: var(--dark-green);
+  padding: 1.2rem 1.5rem 1rem;
+  flex-shrink: 0;
+  position: relative;
+}
+.vmp-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+}
+.vmp-back {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 3px;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.vmp-back:hover { background: rgba(255,255,255,0.2); }
+.vmp-close {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.vmp-close:hover { background: rgba(255,255,255,0.25); }
+.vmp-eyebrow { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.25rem; }
+.vmp-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--white); margin: 0; }
+
+/* Tabs */
+.vmp-tabs {
+  display: flex;
+  border-bottom: 2px solid rgba(12,32,45,0.08);
+  background: var(--cream);
+  flex-shrink: 0;
+}
+.vmp-tab {
+  flex: 1;
+  padding: 0.85rem 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.vmp-tab.active { color: var(--dark-green); border-bottom-color: var(--gold); }
+.vmp-tab:hover:not(.active) { color: var(--dark-green); }
+
+/* Body */
+.vmp-body { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.vmp-plan-section { display: none; flex-direction: column; flex: 1; }
+.vmp-plan-section.active { display: flex; }
+
+/* Plan canvas */
+.vmp-plan-canvas {
+  position: relative;
+  background: #f5f3ef;
+  border-bottom: 1px solid rgba(12,32,45,0.08);
+  overflow: hidden;
+  flex-shrink: 0;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vmp-plan-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Placeholder card shown until real image is dropped in */
+.vmp-plan-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.75rem;
+  border: 2px dashed var(--gold);
+  border-radius: 4px;
+  background: rgba(201,169,110,0.06);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+.vmp-plan-placeholder-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(201,169,110,0.12);
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vmp-plan-placeholder h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-green);
+  margin: 0;
+}
+.vmp-plan-placeholder p {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+}
+.vmp-placeholder-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: #1a2e1a;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* Plan hotspot labels (for future use) */
+.vmp-hotspot-label {
+  position: absolute;
+  background: var(--dark-green);
+  color: var(--white);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 7px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s, transform 0.18s;
+  transform-origin: bottom center;
+  z-index: 5;
+}
+.vmp-hotspot-label::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid transparent;
+  border-top-color: var(--dark-green);
+}
+.vmp-hotspot-label:hover, .vmp-hotspot-label.active {
+  background: var(--gold);
+  color: #1a2e1a;
+  transform: scale(1.08);
+}
+.vmp-hotspot-label:hover::after, .vmp-hotspot-label.active::after {
+  border-top-color: var(--gold);
+}
+
+/* Room detail info area */
+.vmp-room-detail {
+  background: var(--dark-green);
+  color: var(--white);
+  padding: 0.9rem 1.25rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  display: none;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(201,169,110,0.25);
+  animation: vmpSlideDown 0.22s ease;
+}
+.vmp-room-detail.visible { display: block; }
+@keyframes vmpSlideDown { from { opacity:0; transform: translateY(-8px); } to { opacity:1; transform: translateY(0); } }
+.vmp-room-detail-title { font-family: var(--font-display); font-size: 0.92rem; font-weight: 700; color: var(--gold); margin-bottom: 0.25rem; }
+.vmp-room-detail-dims { font-size: 0.7rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.6); margin-bottom: 0.35rem; }
+.vmp-room-detail-desc { font-size: 0.8rem; color: rgba(255,255,255,0.82); }
+
+/* Plan info list */
+.vmp-info { padding: 1.25rem 1.5rem; flex: 1; overflow-y: auto; }
+.vmp-info-title {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.vmp-rooms-list { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+.vmp-rooms-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(12,32,45,0.06);
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.vmp-rooms-list li:hover { color: var(--dark-green); }
+.vmp-rooms-list li span.room-name { font-weight: 600; }
+.vmp-rooms-list li span.room-dim { font-size: 0.72rem; color: var(--text-light); font-style: italic; }
+.vmp-rooms-list li span.room-placeholder { font-size: 0.68rem; color: rgba(201,169,110,0.7); font-style: italic; }
+.vmp-annotation {
+  background: var(--cream);
+  border-left: 3px solid var(--gold);
+  padding: 0.75rem 1rem;
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  border-radius: 0 3px 3px 0;
+  margin-bottom: 1rem;
+}
+.vmp-cta-row { display: flex; gap: 0.6rem; flex-wrap: wrap; padding-top: 0.5rem; }
+.vmp-cta-row .btn { font-size: 0.7rem; padding: 0.7rem 1.1rem; }
+
+@media (max-width: 640px) {
+  .villa-map-panel { width: 100vw; height: 92vh; top: auto; bottom: -100vh; right: 0; border-radius: 12px 12px 0 0; transition: bottom 0.38s cubic-bezier(0.4,0,0.2,1); }
+  .villa-map-panel.open { bottom: 0; right: 0; }
+  .vmp-plan-canvas { height: 220px; }
+}
+
 </style>
   <!-- Google Analytics placeholder -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID">
@@ -7050,6 +7315,130 @@ img {
   </div>
 </div>
 
+
+<!-- Villa Map Panel -->
+<div class="villa-map-panel" id="villaMapPanel">
+
+  <!-- Header -->
+  <div class="vmp-header">
+    <div class="vmp-nav">
+      <button class="vmp-back" id="vmpBack">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Villa
+      </button>
+      <button class="vmp-close" id="vmpClose">✕</button>
+    </div>
+    <span class="vmp-eyebrow" id="vmpVillaName">Villa Plans</span>
+    <h2 class="vmp-title">Floor & Loft Plans</h2>
+  </div>
+
+  <!-- Tabs -->
+  <div class="vmp-tabs">
+    <button class="vmp-tab active" data-vmp-tab="floor">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+      Floor Plan
+    </button>
+    <button class="vmp-tab" data-vmp-tab="loft">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:5px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Loft Plan
+    </button>
+  </div>
+
+  <!-- Body -->
+  <div class="vmp-body">
+
+    <!-- FLOOR PLAN SECTION -->
+    <div class="vmp-plan-section active" id="vmpFloorSection">
+
+      <!-- Plan Canvas — replace .vmp-plan-placeholder with <img class="vmp-plan-img"> when ready -->
+      <div class="vmp-plan-canvas" id="vmpFloorCanvas">
+        <div class="vmp-plan-placeholder">
+          <div class="vmp-plan-placeholder-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="vmp-placeholder-badge">Placeholder</span>
+          <h4>Floor Plan</h4>
+          <p>Replace this card with the actual floor plan image.<br/>Hotspot labels will overlay the image.</p>
+        </div>
+        <!-- Future hotspot labels go here, e.g.:
+        <div class="vmp-hotspot-label" style="left:30%;top:45%;" data-room="master-bed" data-dims="5.2m × 4.8m" data-desc="Spacious master bedroom with ensuite and private balcony access.">Master Bedroom</div>
+        -->
+      </div>
+
+      <!-- Room detail popup area — shown on hotspot hover/tap -->
+      <div class="vmp-room-detail" id="vmpFloorRoomDetail">
+        <div class="vmp-room-detail-title" id="vmpFloorRoomTitle">Room Name</div>
+        <div class="vmp-room-detail-dims" id="vmpFloorRoomDims">— m × — m</div>
+        <div class="vmp-room-detail-desc" id="vmpFloorRoomDesc">Description will appear here.</div>
+      </div>
+
+      <!-- Info list -->
+      <div class="vmp-info">
+        <p class="vmp-info-title">Ground Floor Rooms</p>
+        <ul class="vmp-rooms-list" id="vmpFloorRoomsList">
+          <!-- Populated from VILLA_PLANS data — placeholders for now -->
+          <li><span class="room-name">Living Area</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Kitchen / Dining</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Master Bedroom</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Bedroom 2</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Bathroom</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Laundry</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Patio / Deck</span><span class="room-placeholder">Dimensions TBC</span></li>
+        </ul>
+        <div class="vmp-annotation">
+          Tap any room label on the plan above to view its dimensions and description. Final architectural drawings will be added prior to launch.
+        </div>
+        <div class="vmp-cta-row">
+          <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener" class="btn btn-primary">Book Now</a>
+          <a href="#" class="btn btn-outline-green" data-page="page-contact">Enquire</a>
+        </div>
+      </div>
+    </div><!-- /floor section -->
+
+    <!-- LOFT PLAN SECTION -->
+    <div class="vmp-plan-section" id="vmpLoftSection">
+
+      <div class="vmp-plan-canvas" id="vmpLoftCanvas">
+        <div class="vmp-plan-placeholder">
+          <div class="vmp-plan-placeholder-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <span class="vmp-placeholder-badge">Placeholder</span>
+          <h4>Loft Plan</h4>
+          <p>Replace this card with the actual loft plan image.<br/>Hotspot labels will overlay the image.</p>
+        </div>
+        <!-- Future hotspot labels:
+        <div class="vmp-hotspot-label" style="left:40%;top:35%;" data-room="loft-bed" data-dims="4.0m × 3.6m" data-desc="Open loft bedroom with panoramic views and mezzanine feel.">Loft Bedroom</div>
+        -->
+      </div>
+
+      <div class="vmp-room-detail" id="vmpLoftRoomDetail">
+        <div class="vmp-room-detail-title" id="vmpLoftRoomTitle">Room Name</div>
+        <div class="vmp-room-detail-dims" id="vmpLoftRoomDims">— m × — m</div>
+        <div class="vmp-room-detail-desc" id="vmpLoftRoomDesc">Description will appear here.</div>
+      </div>
+
+      <div class="vmp-info">
+        <p class="vmp-info-title">Upper Loft Rooms</p>
+        <ul class="vmp-rooms-list" id="vmpLoftRoomsList">
+          <li><span class="room-name">Loft Bedroom</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Ensuite / Bathroom</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Study / Retreat</span><span class="room-placeholder">Dimensions TBC</span></li>
+          <li><span class="room-name">Balcony</span><span class="room-placeholder">Dimensions TBC</span></li>
+        </ul>
+        <div class="vmp-annotation">
+          Tap any room label on the plan above to view its dimensions and description. Final architectural drawings will be added prior to launch.
+        </div>
+        <div class="vmp-cta-row">
+          <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener" class="btn btn-primary">Book Now</a>
+          <a href="#" class="btn btn-outline-green" data-page="page-contact">Enquire</a>
+        </div>
+      </div>
+    </div><!-- /loft section -->
+
+  </div><!-- /vmp-body -->
+</div><!-- /villa-map-panel -->
+
 <!-- ============================================================
      PAGE: CONTACT
      ============================================================ -->
@@ -7860,8 +8249,13 @@ var PIN_IMAGES = {
         e.preventDefault();
         var target = panelDirectionsBtn.getAttribute('data-page');
         if (target) {
+          // "Get Directions" → navigate to contact
           closePanel();
           showPage(target);
+        } else {
+          // "See Villa Map" → open villa map panel
+          var title = document.getElementById('panelTitle');
+          window.openVillaMap(title ? title.textContent : 'Villa Plans');
         }
       });
     }
@@ -8244,6 +8638,86 @@ var PIN_IMAGES = {
     document.addEventListener('DOMContentLoaded', initVillaGallery);
   } else {
     initVillaGallery();
+  }
+})();
+</script>
+
+<script>
+(function() {
+  var villaPanel   = document.getElementById('villaMapPanel');
+  var mapSidePanel = document.getElementById('mapSidePanel');
+  var mapOverlay   = document.getElementById('mapOverlay');
+  var vmpBack      = document.getElementById('vmpBack');
+  var vmpClose     = document.getElementById('vmpClose');
+  var vmpVillaName = document.getElementById('vmpVillaName');
+
+  // Tab switching
+  var tabs = document.querySelectorAll('.vmp-tab');
+  var sections = document.querySelectorAll('.vmp-plan-section');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var target = tab.getAttribute('data-vmp-tab');
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      sections.forEach(function(s) { s.classList.remove('active'); });
+      tab.classList.add('active');
+      var sec = document.getElementById('vmp' + target.charAt(0).toUpperCase() + target.slice(1) + 'Section');
+      if (sec) sec.classList.add('active');
+    });
+  });
+
+  // Hotspot label clicks
+  document.querySelectorAll('.vmp-hotspot-label').forEach(function(hl) {
+    hl.addEventListener('click', function() {
+      var section = hl.closest('.vmp-plan-section');
+      var roomDetail = section ? section.querySelector('.vmp-room-detail') : null;
+      if (!roomDetail) return;
+      var titleEl = roomDetail.querySelector('[id$="RoomTitle"]');
+      var dimsEl  = roomDetail.querySelector('[id$="RoomDims"]');
+      var descEl  = roomDetail.querySelector('[id$="RoomDesc"]');
+      if (titleEl) titleEl.textContent = hl.textContent || hl.getAttribute('data-room') || '';
+      if (dimsEl)  dimsEl.textContent  = hl.getAttribute('data-dims') || '— m × — m';
+      if (descEl)  descEl.textContent  = hl.getAttribute('data-desc') || '';
+      roomDetail.style.display = 'block';
+    });
+  });
+
+  // Room list item clicks (highlight hotspot)
+  document.querySelectorAll('.vmp-rooms-list li').forEach(function(li) {
+    li.addEventListener('click', function() {
+      li.closest('.vmp-rooms-list').querySelectorAll('li').forEach(function(x) { x.classList.remove('active'); });
+      li.classList.add('active');
+    });
+  });
+
+  // Open villa map panel
+  window.openVillaMap = function(villaName) {
+    if (vmpVillaName) vmpVillaName.textContent = villaName || 'Villa Plans';
+    // Reset to floor tab
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    sections.forEach(function(s) { s.classList.remove('active'); });
+    var firstTab = document.querySelector('.vmp-tab[data-vmp-tab="floor"]');
+    var firstSec = document.getElementById('vmpFloorSection');
+    if (firstTab) firstTab.classList.add('active');
+    if (firstSec) firstSec.classList.add('active');
+    // Hide room detail popups
+    document.querySelectorAll('.vmp-room-detail').forEach(function(d) { d.style.display = 'none'; });
+    if (villaPanel) villaPanel.classList.add('open');
+  };
+
+  // Close villa map only (back button)
+  if (vmpBack) {
+    vmpBack.addEventListener('click', function() {
+      if (villaPanel) villaPanel.classList.remove('open');
+    });
+  }
+
+  // Close everything (X button)
+  if (vmpClose) {
+    vmpClose.addEventListener('click', function() {
+      if (villaPanel) villaPanel.classList.remove('open');
+      if (mapSidePanel) mapSidePanel.classList.remove('open');
+      if (mapOverlay) mapOverlay.classList.remove('active');
+    });
   }
 })();
 </script>
