@@ -7819,6 +7819,20 @@ var PIN_IMAGES = {
       overlay.classList.add('open');
       sidePanel.classList.add('open');
       document.body.style.overflow = 'hidden';
+
+      // CTA: villa pins → "See Villa Map", all others → "Get Directions" → Contact page
+      var panelDirections = document.getElementById('panelDirections');
+      if (panelDirections) {
+        if (cat === 'accommodation') {
+          panelDirections.textContent = 'See Villa Map';
+          panelDirections.removeAttribute('data-page');
+          panelDirections.href = '#';
+        } else {
+          panelDirections.textContent = 'Get Directions';
+          panelDirections.setAttribute('data-page', 'page-contact');
+          panelDirections.href = '#';
+        }
+      }
     }
 
     function closePanel() {
@@ -7838,6 +7852,19 @@ var PIN_IMAGES = {
 
     panelClose.addEventListener('click', closePanel);
     overlay.addEventListener('click', closePanel);
+
+    // panelDirections CTA — dynamically routes based on cat set in openPanel()
+    var panelDirectionsBtn = document.getElementById('panelDirections');
+    if (panelDirectionsBtn) {
+      panelDirectionsBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = panelDirectionsBtn.getAttribute('data-page');
+        if (target) {
+          closePanel();
+          showPage(target);
+        }
+      });
+    }
 
     // Highlight cards filter trigger
     document.querySelectorAll('.highlight-card').forEach(function(card) {
