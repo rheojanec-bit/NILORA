@@ -559,6 +559,143 @@ h4, h5, h6 { font-family: var(--font-body); font-weight: 600; }
 .feature-text h4 { font-size: 0.875rem; color: var(--dark-green); margin-bottom: 0.125rem; }
 .feature-text p { font-size: 0.8rem; color: var(--text-light); }
 
+/* ==================== LUXURY ACCOMMODATION CARDS ==================== */
+.lux-cards-wrap { display:flex; flex-direction:column; }
+.lux-card {
+  display:grid;
+  grid-template-columns:420px 1fr;
+  background:var(--white);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 4px 32px rgba(12,32,45,0.12);
+  border:1px solid rgba(200,159,53,0.15);
+  transition:box-shadow 0.3s ease, transform 0.3s ease;
+}
+.lux-card:hover { box-shadow:0 12px 48px rgba(12,32,45,0.2); transform:translateY(-3px); }
+.lux-card-img-wrap {
+  position:relative;
+  overflow:hidden;
+  min-height:360px;
+}
+.lux-card-img-wrap img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.6s ease;
+}
+.lux-card:hover .lux-card-img-wrap img { transform:scale(1.04); }
+.lux-badge {
+  position:absolute;
+  top:1.25rem;
+  left:1.25rem;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:0.35rem 0.8rem;
+  border-radius:3px;
+}
+.lux-badge--gold { background:var(--gold); color:var(--dark-green); }
+.lux-badge--green { background:var(--mid-green); color:var(--white); }
+.lux-badge--dark { background:var(--dark-green); color:var(--gold); }
+.lux-badge--premium { background:linear-gradient(135deg,#c9a96e,#a07a3b); color:#fff; }
+.lux-card-body {
+  padding:2.25rem 2.5rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.lux-category {
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:0.5rem;
+}
+.lux-title {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:2rem;
+  font-weight:600;
+  color:var(--dark-green);
+  margin-bottom:0.4rem;
+  line-height:1.2;
+}
+.lux-subtitle {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1rem;
+  color:var(--gold);
+  margin-bottom:1rem;
+}
+.lux-desc {
+  font-size:0.88rem;
+  color:var(--text-mid);
+  line-height:1.75;
+  margin-bottom:1.25rem;
+}
+.lux-stats {
+  display:flex;
+  gap:0;
+  border:1px solid rgba(200,159,53,0.2);
+  border-radius:6px;
+  overflow:hidden;
+  margin-bottom:1.25rem;
+}
+.lux-stat {
+  flex:1;
+  text-align:center;
+  padding:0.75rem 0.5rem;
+  border-right:1px solid rgba(200,159,53,0.2);
+}
+.lux-stat:last-child { border-right:none; }
+.lux-stat-icon { color:var(--gold); margin-bottom:0.25rem; display:flex; justify-content:center; }
+.lux-stat-val { font-size:1rem; font-weight:700; color:var(--dark-green); line-height:1.2; }
+.lux-stat-lbl { font-size:0.65rem; color:var(--text-light); text-transform:uppercase; letter-spacing:0.08em; }
+.lux-amenities {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0.3rem 1rem;
+  margin-bottom:1.5rem;
+}
+.lux-amenity {
+  display:flex;
+  align-items:center;
+  gap:0.4rem;
+  font-size:0.8rem;
+  color:var(--text-mid);
+}
+.lux-amenity svg { color:var(--gold); flex-shrink:0; }
+.lux-actions { display:flex; gap:0.75rem; }
+.lux-btn {
+  display:inline-block;
+  padding:0.75rem 1.75rem;
+  font-size:0.78rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-radius:3px;
+  transition:all 0.25s ease;
+  cursor:pointer;
+  text-align:center;
+}
+.lux-btn--primary { background:var(--gold); color:var(--dark-green); border:2px solid var(--gold); }
+.lux-btn--primary:hover { background:transparent; color:var(--gold); }
+.lux-btn--secondary { background:transparent; color:var(--dark-green); border:2px solid var(--dark-green); }
+.lux-btn--secondary:hover { background:var(--dark-green); color:var(--white); }
+@media (max-width:900px) {
+  .lux-card { grid-template-columns:1fr; }
+  .lux-card-img-wrap { min-height:260px; }
+  .lux-card-body { padding:1.75rem; }
+  .lux-title { font-size:1.6rem; }
+}
+@media (max-width:600px) {
+  .lux-amenities { grid-template-columns:1fr; }
+  .lux-actions { flex-direction:column; }
+  .lux-btn { text-align:center; }
+}
+
 /* ==================== ACCOMMODATION ==================== */
 .accom-grid {
   display: grid;
@@ -6165,95 +6302,99 @@ img {
         <p class="eyebrow">Our Rooms &amp; Villas</p>
         <h2 class="display-md">Choose Your Perfect Stay</h2>
         <div class="gold-divider"></div>
-        <p>From intimate resort rooms for couples to sprawling three-bedroom villas for large families and groups, every stay at Nilora is designed for comfort and connection.</p>
+        <p>From intimate garden retreats for couples to signature lagoon villas for families and groups, every stay at Nilora is an experience unto itself.</p>
       </div>
-
-      <div class="accom-page-grid">
-        <!-- 3 Bed -->
-        <div class="accom-detail-card accom-detail-card--premium fade-up" style="grid-column:1/-1">
-
-          <!-- ===== IMAGE GALLERY ===== -->
-          <div class="villa-gallery" id="villaGallery" data-index="0">
-            <div class="villa-gallery-track">
-              <div class="villa-slide is-active" data-slide-index="0">
-                <img src="image-13.jpg" alt="3 Bedroom Resort Villa — tropical exterior" loading="eager" decoding="async" />
-              </div>
-              <div class="villa-slide" data-slide-index="1">
-                <img src="image-14.jpg" alt="3 Bedroom Resort Villa — loft bedroom" loading="lazy" decoding="async" />
-              </div>
-              <div class="villa-slide" data-slide-index="2">
-                <img src="image-15.jpg" alt="3 Bedroom Resort Villa — master bedroom" loading="lazy" decoding="async" />
-              </div>
-              <div class="villa-slide" data-slide-index="3">
-                <img src="image-16.jpg" alt="3 Bedroom Resort Villa — open-plan living" loading="lazy" decoding="async" />
-              </div>
-              <div class="villa-slide" data-slide-index="4">
-                <img src="image-17.jpg" alt="3 Bedroom Resort Villa — ensuite bathroom" loading="lazy" decoding="async" />
-              </div>
-            </div>
-
-            <span class="villa-badge villa-badge--popular">Most Popular</span>
-            <span class="villa-badge villa-badge--price">From $380/night</span>
-            <div class="villa-gallery-gradient"></div>
-
-            <button type="button" class="villa-nav villa-nav--prev" aria-label="Previous image">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <button type="button" class="villa-nav villa-nav--next" aria-label="Next image">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
-
-            <div class="villa-dots"><button type="button" class="villa-dot is-active" data-slide-index="0" aria-label="View image 1"></button><button type="button" class="villa-dot" data-slide-index="1" aria-label="View image 2"></button><button type="button" class="villa-dot" data-slide-index="2" aria-label="View image 3"></button><button type="button" class="villa-dot" data-slide-index="3" aria-label="View image 4"></button><button type="button" class="villa-dot" data-slide-index="4" aria-label="View image 5"></button></div>
+      <div class="lux-cards-wrap">
+        <div class="lux-card fade-up" style="margin-bottom:2.5rem;">
+          <div class="lux-card-img-wrap">
+            <img src="villa-photo-2.jpg" alt="One Bedroom Garden Villa — Nilora Resort Port Macquarie" loading="lazy" />
+            <span class="lux-badge lux-badge--gold">BEST FOR COUPLES</span>
           </div>
-
-          <!-- ===== CONTENT ===== -->
-          <div class="villa-content">
-
-            <p class="villa-category">Signature Villa &mdash; Most Popular</p>
-            <h2 class="villa-title">3 Bedroom Resort Villa</h2>
-            <p class="villa-tagline">Perfect for families, group retreats and unforgettable coastal escapes.</p>
-
-            <p class="villa-description">The ultimate resort experience for families and groups. Generously proportioned with multiple bathrooms, spacious living and dining areas, a fully equipped kitchen, private outdoor patio and BBQ &mdash; everything you need for a stay that feels effortless from the moment you arrive.</p>
-
-            <div class="villa-stats">
-              <div class="villa-stat">
-                <div class="villa-stat-icon"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><line x1="3" y1="22" x2="3" y2="25"/><line x1="29" y1="22" x2="29" y2="25"/></svg></div>
-                <div class="villa-stat-value">3</div>
-                <div class="villa-stat-label">Bedrooms</div>
-              </div>
-              <div class="villa-stat">
-                <div class="villa-stat-icon"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg></div>
-                <div class="villa-stat-value">Up to 8</div>
-                <div class="villa-stat-label">Guests</div>
-              </div>
-              <div class="villa-stat">
-                <div class="villa-stat-icon"><svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg></div>
-                <div class="villa-stat-value">160m&sup2;</div>
-                <div class="villa-stat-label">Floor Area</div>
-              </div>
+          <div class="lux-card-body">
+            <p class="lux-category">Garden Villa &mdash; Intimate Retreat</p>
+            <h2 class="lux-title">One Bedroom Garden Villa</h2>
+            <p class="lux-subtitle"><em>Your private sanctuary in the heart of the tropics.</em></p>
+            <p class="lux-desc">Designed for couples seeking seclusion and romance, this beautifully appointed villa nestles within lush tropical gardens. Step out onto your covered deck, breathe in the garden air, and let the resort take care of the rest.</p>
+            <div class="lux-stats">
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><line x1="3" y1="22" x2="3" y2="25"/><line x1="29" y1="22" x2="29" y2="25"/></svg></div><div class="lux-stat-val">1</div><div class="lux-stat-lbl">Bedrooms</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg></div><div class="lux-stat-val">Up to 2</div><div class="lux-stat-lbl">Guests</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg></div><div class="lux-stat-val">80m&sup2;</div><div class="lux-stat-lbl">Floor Area</div></div>
             </div>
-
-            <div class="villa-amenities">
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Master Bedroom with Ensuite</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Additional Bedrooms</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Spacious Living Area</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Fully Equipped Kitchen</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Dining Area</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Laundry Facilities</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Private Balcony or Verandah</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Smart Television</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Air Conditioning</span></div>
-              <div class="villa-amenity"><svg class="villa-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Complimentary WiFi</span></div>
+            <div class="lux-amenities"><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Master Bedroom with Ensuite</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Private Covered Deck</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Fully Equipped Kitchen</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Living & Dining Area</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Air Conditioning</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Smart Television</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Complimentary WiFi</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Laundry Facilities</span></div></div>
+            <div class="lux-actions">
+              <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="lux-btn lux-btn--primary" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+              <a href="#" class="lux-btn lux-btn--secondary" data-page="page-contact">View Details</a>
             </div>
-
-            <div class="villa-actions">
-              <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="villa-btn villa-btn--primary" onclick="window.open('https://niloraresort.bookus.direct/', '_blank', 'noopener,noreferrer'); return false;">Book Now</a>
-              <a href="#" class="villa-btn villa-btn--secondary" data-page="page-contact">View Details</a>
+          </div>
+        </div>
+        <div class="lux-card fade-up" style="margin-bottom:2.5rem;">
+          <div class="lux-card-img-wrap">
+            <img src="villa-photo-3.jpg" alt="Two Bedroom Garden Villa — Nilora Resort Port Macquarie" loading="lazy" />
+            <span class="lux-badge lux-badge--green">PERFECT FOR FAMILIES</span>
+          </div>
+          <div class="lux-card-body">
+            <p class="lux-category">Garden Villa &mdash; Family Favourite</p>
+            <h2 class="lux-title">Two Bedroom Garden Villa</h2>
+            <p class="lux-subtitle"><em>Room to breathe, space to belong together.</em></p>
+            <p class="lux-desc">Ideal for small families and friend groups, this villa combines tropical garden living with generous indoor space. Its lush landscaping and architectural character make every arrival feel like a grand homecoming.</p>
+            <div class="lux-stats">
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><line x1="3" y1="22" x2="3" y2="25"/><line x1="29" y1="22" x2="29" y2="25"/></svg></div><div class="lux-stat-val">2</div><div class="lux-stat-lbl">Bedrooms</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg></div><div class="lux-stat-val">Up to 4</div><div class="lux-stat-lbl">Guests</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg></div><div class="lux-stat-val">110m&sup2;</div><div class="lux-stat-lbl">Floor Area</div></div>
             </div>
-
+            <div class="lux-amenities"><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Two Spacious Bedrooms</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Ensuite Bathroom</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Open-Plan Living & Dining</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Fully Equipped Kitchen</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Tropical Garden Views</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Air Conditioning</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Smart Television</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Complimentary WiFi</span></div></div>
+            <div class="lux-actions">
+              <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="lux-btn lux-btn--primary" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+              <a href="#" class="lux-btn lux-btn--secondary" data-page="page-contact">View Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="lux-card fade-up" style="margin-bottom:2.5rem;">
+          <div class="lux-card-img-wrap">
+            <img src="villa-photo-4.jpg" alt="Three Bedroom Garden Villa — Nilora Resort Port Macquarie" loading="lazy" />
+            <span class="lux-badge lux-badge--dark">MADE FOR GROUPS</span>
+          </div>
+          <div class="lux-card-body">
+            <p class="lux-category">Garden Villa &mdash; Group Retreat</p>
+            <h2 class="lux-title">Three Bedroom Garden Villa</h2>
+            <p class="lux-subtitle"><em>Gather, celebrate and make memories that last.</em></p>
+            <p class="lux-desc">The ultimate villa for multi-family getaways and group celebrations. With three spacious bedrooms, a sweeping circular driveway and mature tropical palms, this property delivers the resort-living experience at full scale.</p>
+            <div class="lux-stats">
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><line x1="3" y1="22" x2="3" y2="25"/><line x1="29" y1="22" x2="29" y2="25"/></svg></div><div class="lux-stat-val">3</div><div class="lux-stat-lbl">Bedrooms</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg></div><div class="lux-stat-val">Up to 8</div><div class="lux-stat-lbl">Guests</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg></div><div class="lux-stat-val">160m&sup2;</div><div class="lux-stat-lbl">Floor Area</div></div>
+            </div>
+            <div class="lux-amenities"><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Three Bedrooms incl. Master Ensuite</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Multiple Bathrooms</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Spacious Living Area</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Fully Equipped Kitchen</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Dining Area</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Laundry Facilities</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Private Patio & BBQ</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Complimentary WiFi</span></div></div>
+            <div class="lux-actions">
+              <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="lux-btn lux-btn--primary" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+              <a href="#" class="lux-btn lux-btn--secondary" data-page="page-contact">View Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="lux-card fade-up" style="">
+          <div class="lux-card-img-wrap">
+            <img src="villa-photo-5.jpg" alt="Three Bedroom Lagoon Villa — Nilora Resort Port Macquarie" loading="lazy" />
+            <span class="lux-badge lux-badge--premium">PREMIUM EXPERIENCE</span>
+          </div>
+          <div class="lux-card-body">
+            <p class="lux-category">Lagoon Villa &mdash; Signature Collection</p>
+            <h2 class="lux-title">Three Bedroom Lagoon Villa</h2>
+            <p class="lux-subtitle"><em>Where the lagoon meets luxury, endlessly.</em></p>
+            <p class="lux-desc">Nilora's most coveted address. Set directly on the resort lagoon, this signature villa offers breathtaking water views from every vantage point. Fall asleep to the reflections, wake up to paradise — the lagoon is yours to claim.</p>
+            <div class="lux-stats">
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><line x1="3" y1="22" x2="3" y2="25"/><line x1="29" y1="22" x2="29" y2="25"/></svg></div><div class="lux-stat-val">3</div><div class="lux-stat-lbl">Bedrooms</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg></div><div class="lux-stat-val">Up to 8</div><div class="lux-stat-lbl">Guests</div></div>
+              <div class="lux-stat"><div class="lux-stat-icon"><svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg></div><div class="lux-stat-val">175m&sup2;</div><div class="lux-stat-lbl">Floor Area</div></div>
+            </div>
+            <div class="lux-amenities"><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Direct Lagoon Access</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Three Bedrooms incl. Master Ensuite</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Panoramic Water Views</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Gourmet Kitchen</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Outdoor Living & Dining</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Private Pontoon</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Laundry Facilities</span></div><div class="lux-amenity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Complimentary WiFi</span></div></div>
+            <div class="lux-actions">
+              <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="lux-btn lux-btn--primary" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+              <a href="#" class="lux-btn lux-btn--secondary" data-page="page-contact">View Details</a>
+            </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
   <!-- General Amenities -->
