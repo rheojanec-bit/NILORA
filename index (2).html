@@ -5482,6 +5482,187 @@ img {
   border-radius: 20px;
 }
 
+/* ==================== VILLA MENU PANEL ==================== */
+.villa-menu-panel {
+  position: fixed;
+  top: 0; right: -500px;
+  width: 440px;
+  height: 100vh;
+  background: var(--white);
+  z-index: 103;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 32px rgba(12,32,45,0.18);
+  transition: right 0.38s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
+}
+.villa-menu-panel.open { right: 0; }
+.vmp-menu-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(12,32,45,0.15);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--dark-green);
+  z-index: 2;
+  transition: background 0.2s;
+}
+.vmp-menu-close:hover { background: var(--cream); }
+.vmp-menu-header {
+  padding: 1.75rem 1.5rem 1rem;
+  border-bottom: 1px solid rgba(200,159,53,0.2);
+  flex-shrink: 0;
+}
+.vmp-menu-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.vmp-menu-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--dark-green);
+  line-height: 1.2;
+}
+.vmp-menu-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1rem 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+/* ── Villa Card ── */
+.vmp-villa-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(200,159,53,0.18);
+  background: var(--white);
+  box-shadow: 0 2px 12px rgba(12,32,45,0.08);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  cursor: pointer;
+}
+.vmp-villa-card:hover { box-shadow: 0 6px 24px rgba(12,32,45,0.16); transform: translateY(-2px); }
+.vmp-vc-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.vmp-vc-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.vmp-villa-card:hover .vmp-vc-img-wrap img { transform: scale(1.06); }
+.vmp-vc-badge {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.3rem 0.4rem;
+}
+.vmp-vc-badge--gold    { background: var(--gold); color: var(--dark-green); }
+.vmp-vc-badge--green   { background: var(--mid-green); color: #fff; }
+.vmp-vc-badge--dark    { background: var(--dark-green); color: var(--gold); }
+.vmp-vc-badge--premium { background: linear-gradient(135deg,#c9a96e,#a07a3b); color: #fff; }
+.vmp-vc-body {
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.vmp-vc-type {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.15rem;
+}
+.vmp-vc-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark-green);
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+.vmp-vc-rooms {
+  font-size: 0.68rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+.vmp-vc-stats {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
+}
+.vmp-vc-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  color: var(--text-mid);
+}
+.vmp-vc-stat svg { color: var(--gold); flex-shrink: 0; }
+.vmp-vc-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+.vmp-vc-btn {
+  flex: 1;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: block;
+}
+.vmp-vc-btn--plan {
+  background: transparent;
+  color: var(--dark-green);
+  border: 1.5px solid var(--dark-green);
+}
+.vmp-vc-btn--plan:hover { background: var(--dark-green); color: var(--white); }
+.vmp-vc-btn--book {
+  background: var(--gold);
+  color: var(--dark-green);
+  border: 1.5px solid var(--gold);
+}
+.vmp-vc-btn--book:hover { background: transparent; color: var(--gold); }
+/* pin style */
+.hotspot-pin.vm-pin {
+  width: 36px; height: 36px;
+  font-size: 0.6rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold);
+  color: var(--dark-green);
+}
+@media (max-width: 500px) {
+  .villa-menu-panel { width: 100vw; right: -100vw; }
+  .villa-menu-panel.open { right: 0; }
+}
+
 /* Plan hotspot labels (for future use) */
 .vmp-hotspot-label {
   position: absolute;
@@ -7201,325 +7382,15 @@ img {
           <!-- Resort Map Image — actual illustrated concept map -->
           <img src="image-56.png" alt="Nilora Resort Masterplan Map" style="width:100%;height:auto;display:block;">
 
-          <!-- ── INDIVIDUAL VILLA NUMBER HOTSPOTS ── -->
-          <div class="hotspot" data-cat="accommodation" data-id="villa-1bed"
-               style="left:20.0%;top:55.0%;"
-               data-title="One Bedroom Garden Villa"
-               data-sub="Villa 1 · Up to 2 guests"
-               data-desc="Intimate garden villa for couples. Private covered deck, open-plan living, fully equipped kitchen and air conditioning. Villas 1–5."
-               data-features="1 Bedroom with Ensuite,Private Covered Deck,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Air Conditioning,Smart TV,Complimentary WiFi,Laundry">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">1</div>
-            <div class="hotspot-tooltip"><h5>Villa 1 — One Bedroom Garden Villa</h5><p>Villas 1–5 · Up to 2 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-1bed"
-               style="left:19.3%;top:49.9%;"
-               data-title="One Bedroom Garden Villa"
-               data-sub="Villa 2 · Up to 2 guests"
-               data-desc="Intimate garden villa for couples. Private covered deck, open-plan living, fully equipped kitchen and air conditioning. Villas 1–5."
-               data-features="1 Bedroom with Ensuite,Private Covered Deck,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Air Conditioning,Smart TV,Complimentary WiFi,Laundry">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">2</div>
-            <div class="hotspot-tooltip"><h5>Villa 2 — One Bedroom Garden Villa</h5><p>Villas 1–5 · Up to 2 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-1bed"
-               style="left:21.1%;top:40.5%;"
-               data-title="One Bedroom Garden Villa"
-               data-sub="Villa 3 · Up to 2 guests"
-               data-desc="Intimate garden villa for couples. Private covered deck, open-plan living, fully equipped kitchen and air conditioning. Villas 1–5."
-               data-features="1 Bedroom with Ensuite,Private Covered Deck,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Air Conditioning,Smart TV,Complimentary WiFi,Laundry">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">3</div>
-            <div class="hotspot-tooltip"><h5>Villa 3 — One Bedroom Garden Villa</h5><p>Villas 1–5 · Up to 2 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-1bed"
-               style="left:22.8%;top:32.0%;"
-               data-title="One Bedroom Garden Villa"
-               data-sub="Villa 4 · Up to 2 guests"
-               data-desc="Intimate garden villa for couples. Private covered deck, open-plan living, fully equipped kitchen and air conditioning. Villas 1–5."
-               data-features="1 Bedroom with Ensuite,Private Covered Deck,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Air Conditioning,Smart TV,Complimentary WiFi,Laundry">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">4</div>
-            <div class="hotspot-tooltip"><h5>Villa 4 — One Bedroom Garden Villa</h5><p>Villas 1–5 · Up to 2 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-1bed"
-               style="left:24.5%;top:23.6%;"
-               data-title="One Bedroom Garden Villa"
-               data-sub="Villa 5 · Up to 2 guests"
-               data-desc="Intimate garden villa for couples. Private covered deck, open-plan living, fully equipped kitchen and air conditioning. Villas 1–5."
-               data-features="1 Bedroom with Ensuite,Private Covered Deck,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Air Conditioning,Smart TV,Complimentary WiFi,Laundry">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">5</div>
-            <div class="hotspot-tooltip"><h5>Villa 5 — One Bedroom Garden Villa</h5><p>Villas 1–5 · Up to 2 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-2bed"
-               style="left:29.4%;top:5.8%;"
-               data-title="Two Bedroom Garden Villa"
-               data-sub="Villa 6 · Up to 4 guests"
-               data-desc="Spacious garden villa ideal for small families. Two bedrooms, generous living space and lush tropical surroundings. Villas 6–10."
-               data-features="2 Spacious Bedrooms,Ensuite Bathroom,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Tropical Garden Views,Air Conditioning,Smart TV,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">6</div>
-            <div class="hotspot-tooltip"><h5>Villa 6 — Two Bedroom Garden Villa</h5><p>Villas 6–10 · Up to 4 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-2bed"
-               style="left:26.4%;top:15.3%;"
-               data-title="Two Bedroom Garden Villa"
-               data-sub="Villa 7 · Up to 4 guests"
-               data-desc="Spacious garden villa ideal for small families. Two bedrooms, generous living space and lush tropical surroundings. Villas 6–10."
-               data-features="2 Spacious Bedrooms,Ensuite Bathroom,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Tropical Garden Views,Air Conditioning,Smart TV,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">7</div>
-            <div class="hotspot-tooltip"><h5>Villa 7 — Two Bedroom Garden Villa</h5><p>Villas 6–10 · Up to 4 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-2bed"
-               style="left:29.4%;top:30.3%;"
-               data-title="Two Bedroom Garden Villa"
-               data-sub="Villa 8 · Up to 4 guests"
-               data-desc="Spacious garden villa ideal for small families. Two bedrooms, generous living space and lush tropical surroundings. Villas 6–10."
-               data-features="2 Spacious Bedrooms,Ensuite Bathroom,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Tropical Garden Views,Air Conditioning,Smart TV,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">8</div>
-            <div class="hotspot-tooltip"><h5>Villa 8 — Two Bedroom Garden Villa</h5><p>Villas 6–10 · Up to 4 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-2bed"
-               style="left:27.6%;top:41.1%;"
-               data-title="Two Bedroom Garden Villa"
-               data-sub="Villa 9 · Up to 4 guests"
-               data-desc="Spacious garden villa ideal for small families. Two bedrooms, generous living space and lush tropical surroundings. Villas 6–10."
-               data-features="2 Spacious Bedrooms,Ensuite Bathroom,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Tropical Garden Views,Air Conditioning,Smart TV,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">9</div>
-            <div class="hotspot-tooltip"><h5>Villa 9 — Two Bedroom Garden Villa</h5><p>Villas 6–10 · Up to 4 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-2bed"
-               style="left:26.4%;top:49.2%;"
-               data-title="Two Bedroom Garden Villa"
-               data-sub="Villa 10 · Up to 4 guests"
-               data-desc="Spacious garden villa ideal for small families. Two bedrooms, generous living space and lush tropical surroundings. Villas 6–10."
-               data-features="2 Spacious Bedrooms,Ensuite Bathroom,Open-Plan Living &amp; Dining,Fully Equipped Kitchen,Tropical Garden Views,Air Conditioning,Smart TV,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">10</div>
-            <div class="hotspot-tooltip"><h5>Villa 10 — Two Bedroom Garden Villa</h5><p>Villas 6–10 · Up to 4 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:27.3%;top:60.4%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 11 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">11</div>
-            <div class="hotspot-tooltip"><h5>Villa 11 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:32.1%;top:59.3%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 12 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">12</div>
-            <div class="hotspot-tooltip"><h5>Villa 12 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:33.0%;top:50.0%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 13 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">13</div>
-            <div class="hotspot-tooltip"><h5>Villa 13 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:32.6%;top:41.0%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 14 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">14</div>
-            <div class="hotspot-tooltip"><h5>Villa 14 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:34.6%;top:31.1%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 15 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">15</div>
-            <div class="hotspot-tooltip"><h5>Villa 15 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:35.6%;top:23.5%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 16 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">16</div>
-            <div class="hotspot-tooltip"><h5>Villa 16 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:35.2%;top:15.4%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 17 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">17</div>
-            <div class="hotspot-tooltip"><h5>Villa 17 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:35.1%;top:6.0%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 18 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">18</div>
-            <div class="hotspot-tooltip"><h5>Villa 18 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:40.0%;top:6.0%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 19 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">19</div>
-            <div class="hotspot-tooltip"><h5>Villa 19 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-lagoon"
-               style="left:43.0%;top:6.0%;"
-               data-title="Three Bedroom Lagoon Villa"
-               data-sub="Villa 20 · Up to 8 guests"
-               data-desc="Nilora's signature lagoon-front address. Breathtaking water views, direct lagoon access and resort luxury at its finest. Villas 20–26."
-               data-features="Direct Lagoon Access,3 Bedrooms incl. Master Ensuite,Panoramic Water Views,Gourmet Kitchen,Outdoor Living &amp; Dining,Private Pontoon,Laundry Facilities,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">20</div>
-            <div class="hotspot-tooltip"><h5>Villa 20 — Three Bedroom Lagoon Villa</h5><p>Villas 20–26 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-lagoon"
-               style="left:44.9%;top:5.8%;"
-               data-title="Three Bedroom Lagoon Villa"
-               data-sub="Villa 21 · Up to 8 guests"
-               data-desc="Nilora's signature lagoon-front address. Breathtaking water views, direct lagoon access and resort luxury at its finest. Villas 20–26."
-               data-features="Direct Lagoon Access,3 Bedrooms incl. Master Ensuite,Panoramic Water Views,Gourmet Kitchen,Outdoor Living &amp; Dining,Private Pontoon,Laundry Facilities,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">21</div>
-            <div class="hotspot-tooltip"><h5>Villa 21 — Three Bedroom Lagoon Villa</h5><p>Villas 20–26 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-lagoon"
-               style="left:49.6%;top:5.6%;"
-               data-title="Three Bedroom Lagoon Villa"
-               data-sub="Villa 22 · Up to 8 guests"
-               data-desc="Nilora's signature lagoon-front address. Breathtaking water views, direct lagoon access and resort luxury at its finest. Villas 20–26."
-               data-features="Direct Lagoon Access,3 Bedrooms incl. Master Ensuite,Panoramic Water Views,Gourmet Kitchen,Outdoor Living &amp; Dining,Private Pontoon,Laundry Facilities,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">22</div>
-            <div class="hotspot-tooltip"><h5>Villa 22 — Three Bedroom Lagoon Villa</h5><p>Villas 20–26 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-lagoon"
-               style="left:41.4%;top:17.7%;"
-               data-title="Three Bedroom Lagoon Villa"
-               data-sub="Villa 23 · Up to 8 guests"
-               data-desc="Nilora's signature lagoon-front address. Breathtaking water views, direct lagoon access and resort luxury at its finest. Villas 20–26."
-               data-features="Direct Lagoon Access,3 Bedrooms incl. Master Ensuite,Panoramic Water Views,Gourmet Kitchen,Outdoor Living &amp; Dining,Private Pontoon,Laundry Facilities,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">23</div>
-            <div class="hotspot-tooltip"><h5>Villa 23 — Three Bedroom Lagoon Villa</h5><p>Villas 20–26 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-lagoon"
-               style="left:41.4%;top:25.6%;"
-               data-title="Three Bedroom Lagoon Villa"
-               data-sub="Villa 24 · Up to 8 guests"
-               data-desc="Nilora's signature lagoon-front address. Breathtaking water views, direct lagoon access and resort luxury at its finest. Villas 20–26."
-               data-features="Direct Lagoon Access,3 Bedrooms incl. Master Ensuite,Panoramic Water Views,Gourmet Kitchen,Outdoor Living &amp; Dining,Private Pontoon,Laundry Facilities,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">24</div>
-            <div class="hotspot-tooltip"><h5>Villa 24 — Three Bedroom Lagoon Villa</h5><p>Villas 20–26 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-lagoon"
-               style="left:41.8%;top:34.1%;"
-               data-title="Three Bedroom Lagoon Villa"
-               data-sub="Villa 25 · Up to 8 guests"
-               data-desc="Nilora's signature lagoon-front address. Breathtaking water views, direct lagoon access and resort luxury at its finest. Villas 20–26."
-               data-features="Direct Lagoon Access,3 Bedrooms incl. Master Ensuite,Panoramic Water Views,Gourmet Kitchen,Outdoor Living &amp; Dining,Private Pontoon,Laundry Facilities,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">25</div>
-            <div class="hotspot-tooltip"><h5>Villa 25 — Three Bedroom Lagoon Villa</h5><p>Villas 20–26 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-lagoon"
-               style="left:44.5%;top:25.0%;"
-               data-title="Three Bedroom Lagoon Villa"
-               data-sub="Villa 26 · Up to 8 guests"
-               data-desc="Nilora's signature lagoon-front address. Breathtaking water views, direct lagoon access and resort luxury at its finest. Villas 20–26."
-               data-features="Direct Lagoon Access,3 Bedrooms incl. Master Ensuite,Panoramic Water Views,Gourmet Kitchen,Outdoor Living &amp; Dining,Private Pontoon,Laundry Facilities,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">26</div>
-            <div class="hotspot-tooltip"><h5>Villa 26 — Three Bedroom Lagoon Villa</h5><p>Villas 20–26 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:39.1%;top:40.8%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 27 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">27</div>
-            <div class="hotspot-tooltip"><h5>Villa 27 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:39.5%;top:52.0%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 28 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">28</div>
-            <div class="hotspot-tooltip"><h5>Villa 28 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:41.1%;top:75.5%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 29 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">29</div>
-            <div class="hotspot-tooltip"><h5>Villa 29 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:35.4%;top:75.7%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 30 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">30</div>
-            <div class="hotspot-tooltip"><h5>Villa 30 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:30.0%;top:77.0%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 31 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">31</div>
-            <div class="hotspot-tooltip"><h5>Villa 31 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
-          </div>
-
-          <div class="hotspot" data-cat="accommodation" data-id="villa-3bed-garden"
-               style="left:25.1%;top:80.2%;"
-               data-title="Three Bedroom Garden Villa"
-               data-sub="Villa 32 · Up to 8 guests"
-               data-desc="Expansive three-bedroom villa for families and groups. Full kitchen, laundry, multiple bathrooms and private patio. Villas 11–19 &amp; 27–32."
-               data-features="3 Bedrooms incl. Master Ensuite,Multiple Bathrooms,Spacious Living Area,Fully Equipped Kitchen,Dining Area,Laundry Facilities,Private Patio &amp; BBQ,Complimentary WiFi">
-            <div class="hotspot-pin" style="width:22px;height:22px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">32</div>
-            <div class="hotspot-tooltip"><h5>Villa 32 — Three Bedroom Garden Villa</h5><p>Villas 11–19 &amp; 27–32 · Up to 8 guests</p></div>
+          <!-- ── SINGLE VILLAS PIN ── -->
+          <div class="hotspot" data-cat="accommodation" data-id="villas-menu"
+               style="left:27%;top:44%;"
+               data-title="Villas 1–32"
+               data-special="villa-menu">
+            <div class="hotspot-pin vm-pin">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="hotspot-tooltip"><h5>Villas 1–32</h5><p>Tap to explore all villa types</p></div>
           </div>
 
 
@@ -7833,6 +7704,99 @@ img {
 
 
 <!-- Villa Map Panel -->
+<div id="villaMenuPanel" class="villa-menu-panel">
+  <button id="vmpMenuClose" class="vmp-menu-close" aria-label="Close">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="vmp-menu-header">
+    <p class="vmp-menu-eyebrow">Accommodation</p>
+    <h2 class="vmp-menu-title">Choose Your Villa</h2>
+    <div class="gold-divider" style="margin:0.5rem 0 0;"></div>
+  </div>
+  <div class="vmp-menu-body">
+    <div class="vmp-villa-card" data-villa-id="villa-1bed">
+      <div class="vmp-vc-img-wrap">
+        <img src="villa-photo-2.jpg" alt="One Bedroom Garden Villa" loading="lazy" />
+        <span class="vmp-vc-badge vmp-vc-badge--gold">BEST FOR COUPLES</span>
+      </div>
+      <div class="vmp-vc-body">
+        <p class="vmp-vc-type">Garden Villa</p>
+        <h3 class="vmp-vc-title">One Bedroom Garden Villa</h3>
+        <p class="vmp-vc-rooms">Villas 1, 2, 3, 4, 5</p>
+        <div class="vmp-vc-stats">
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/></svg><span>1 Bed</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg><span>Up to 2</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg><span>80m&sup2;</span></div>
+        </div>
+        <div class="vmp-vc-actions">
+          <button class="vmp-vc-btn vmp-vc-btn--plan" data-open-villa="One Bedroom Garden Villa">Floor Plan</button>
+          <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="vmp-vc-btn vmp-vc-btn--book" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="vmp-villa-card" data-villa-id="villa-2bed">
+      <div class="vmp-vc-img-wrap">
+        <img src="villa-photo-3.jpg" alt="Two Bedroom Garden Villa" loading="lazy" />
+        <span class="vmp-vc-badge vmp-vc-badge--green">PERFECT FOR FAMILIES</span>
+      </div>
+      <div class="vmp-vc-body">
+        <p class="vmp-vc-type">Garden Villa</p>
+        <h3 class="vmp-vc-title">Two Bedroom Garden Villa</h3>
+        <p class="vmp-vc-rooms">Villas 6, 7, 8, 9, 10</p>
+        <div class="vmp-vc-stats">
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/></svg><span>2 Beds</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg><span>Up to 4</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg><span>110m&sup2;</span></div>
+        </div>
+        <div class="vmp-vc-actions">
+          <button class="vmp-vc-btn vmp-vc-btn--plan" data-open-villa="Two Bedroom Garden Villa">Floor Plan</button>
+          <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="vmp-vc-btn vmp-vc-btn--book" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="vmp-villa-card" data-villa-id="villa-3bed-garden">
+      <div class="vmp-vc-img-wrap">
+        <img src="villa-photo-4.jpg" alt="Three Bedroom Garden Villa" loading="lazy" />
+        <span class="vmp-vc-badge vmp-vc-badge--dark">MADE FOR GROUPS</span>
+      </div>
+      <div class="vmp-vc-body">
+        <p class="vmp-vc-type">Garden Villa</p>
+        <h3 class="vmp-vc-title">Three Bedroom Garden Villa</h3>
+        <p class="vmp-vc-rooms">Villas 11–19 &amp; 27–32</p>
+        <div class="vmp-vc-stats">
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/></svg><span>3 Beds</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg><span>Up to 8</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg><span>160m&sup2;</span></div>
+        </div>
+        <div class="vmp-vc-actions">
+          <button class="vmp-vc-btn vmp-vc-btn--plan" data-open-villa="Three Bedroom Garden Villa">Floor Plan</button>
+          <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="vmp-vc-btn vmp-vc-btn--book" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="vmp-villa-card" data-villa-id="villa-3bed-lagoon">
+      <div class="vmp-vc-img-wrap">
+        <img src="villa-photo-5.jpg" alt="Three Bedroom Lagoon Villa" loading="lazy" />
+        <span class="vmp-vc-badge vmp-vc-badge--premium">PREMIUM EXPERIENCE</span>
+      </div>
+      <div class="vmp-vc-body">
+        <p class="vmp-vc-type">Lagoon Villa</p>
+        <h3 class="vmp-vc-title">Three Bedroom Lagoon Villa</h3>
+        <p class="vmp-vc-rooms">Villas 20, 21, 22, 23, 24, 25, 26</p>
+        <div class="vmp-vc-stats">
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="26" height="9" rx="2"/><path d="M5 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/><path d="M16 13V9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v4"/></svg><span>3 Beds</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="9" r="4"/><path d="M3 27v-3a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v3"/><circle cx="23" cy="11" r="3.5"/><path d="M21 27v-2.5a5 5 0 0 1 5-5h0a5 5 0 0 1 5 5V27"/></svg><span>Up to 8</span></div>
+          <div class="vmp-vc-stat"><svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="24" height="24" rx="2"/><path d="M4 14h8V4"/></svg><span>175m&sup2;</span></div>
+        </div>
+        <div class="vmp-vc-actions">
+          <button class="vmp-vc-btn vmp-vc-btn--plan" data-open-villa="Three Bedroom Lagoon Villa">Floor Plan</button>
+          <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="vmp-vc-btn vmp-vc-btn--book" onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="villa-map-panel" id="villaMapPanel">
 
   <!-- Header -->
@@ -8860,6 +8824,46 @@ var PIN_IMAGES = {
   })();
 
 });
+  // ── Villa Menu Panel ──────────────────────────────────────────────────────
+  (function() {
+    var menuPanel = document.getElementById('villaMenuPanel');
+    var menuClose = document.getElementById('vmpMenuClose');
+    if (!menuPanel) return;
+
+    function openVillaMenu() {
+      menuPanel.classList.add('open');
+      // close main side panel if open
+      var sp = document.querySelector('.map-side-panel');
+      if (sp) sp.classList.remove('open');
+    }
+    function closeVillaMenu() {
+      menuPanel.classList.remove('open');
+    }
+
+    // Open when villas-menu hotspot clicked
+    document.addEventListener('click', function(e) {
+      var pin = e.target.closest('.hotspot[data-special="villa-menu"]');
+      if (pin) { e.stopPropagation(); openVillaMenu(); return; }
+
+      // Close on overlay click (outside panel)
+      if (menuPanel.classList.contains('open') && !e.target.closest('#villaMenuPanel')) {
+        closeVillaMenu();
+      }
+    });
+
+    if (menuClose) menuClose.addEventListener('click', closeVillaMenu);
+
+    // Floor Plan buttons → open villa map panel
+    menuPanel.querySelectorAll('.vmp-vc-btn--plan').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var villaName = btn.getAttribute('data-open-villa');
+        closeVillaMenu();
+        if (window.openVillaMap) window.openVillaMap(villaName);
+      });
+    });
+  })();
+
 </script>
 
 <style>
