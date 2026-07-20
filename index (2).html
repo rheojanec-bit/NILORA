@@ -8779,6 +8779,15 @@ var PIN_IMAGES = {
     hotspots.forEach(function(h) {
       h.addEventListener('click', function(e) {
         e.stopPropagation();
+        // Villa menu pin — hand off to villa menu panel
+        if (h.getAttribute('data-special') === 'villa-menu') {
+          var menuPanel = document.getElementById('villaMenuPanel');
+          if (menuPanel) {
+            menuPanel.classList.add('open');
+            overlay.classList.add('open');
+          }
+          return;
+        }
         var id = h.getAttribute('data-id');
         if (id === 'assembly-a' || id === 'assembly-b' || id === 'parking' || id === 'service-bldg') return;
         openPanel(h);
@@ -8788,8 +8797,12 @@ var PIN_IMAGES = {
     panelClose.addEventListener('click', closePanel);
     overlay.addEventListener('click', function() {
       var villaPanel = document.getElementById('villaMapPanel');
+      var menuPanel  = document.getElementById('villaMenuPanel');
       if (villaPanel && villaPanel.classList.contains('open')) {
         villaPanel.classList.remove('open');
+      } else if (menuPanel && menuPanel.classList.contains('open')) {
+        menuPanel.classList.remove('open');
+        closePanel();
       } else {
         closePanel();
       }
@@ -8830,26 +8843,9 @@ var PIN_IMAGES = {
     var menuClose = document.getElementById('vmpMenuClose');
     if (!menuPanel) return;
 
-    function openVillaMenu() {
-      menuPanel.classList.add('open');
-      // close main side panel if open
-      var sp = document.querySelector('.map-side-panel');
-      if (sp) sp.classList.remove('open');
-    }
     function closeVillaMenu() {
       menuPanel.classList.remove('open');
     }
-
-    // Open when villas-menu hotspot clicked
-    document.addEventListener('click', function(e) {
-      var pin = e.target.closest('.hotspot[data-special="villa-menu"]');
-      if (pin) { e.stopPropagation(); openVillaMenu(); return; }
-
-      // Close on overlay click (outside panel)
-      if (menuPanel.classList.contains('open') && !e.target.closest('#villaMenuPanel')) {
-        closeVillaMenu();
-      }
-    });
 
     if (menuClose) menuClose.addEventListener('click', closeVillaMenu);
 
