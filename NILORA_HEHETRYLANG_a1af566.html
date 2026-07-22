@@ -6061,7 +6061,10 @@ img {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               Book Now
             </a>
-            <a href="#" class="btn btn-outline-hero" data-page="page-accommodation">Explore Accommodation</a>
+            <a href="#" class="btn btn-outline-hero" id="videoTourBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+              Take a Video Tour
+            </a>
           </div>
         </div>
 
@@ -9551,6 +9554,112 @@ var PIN_IMAGES = {
       if (mapOverlay) mapOverlay.classList.remove('open');
     });
   }
+})();
+</script>
+
+<!-- ===== VIDEO TOUR MODAL ===== -->
+<div id="videoTourModal" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.96);flex-direction:column;align-items:center;justify-content:center;">
+  <!-- Close button -->
+  <button id="videoModalClose" style="position:absolute;top:1.2rem;right:1.4rem;background:rgba(255,255,255,0.12);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.2s;" aria-label="Close">&#x2715;</button>
+
+  <!-- Video container -->
+  <div style="position:relative;width:min(92vw,1100px);aspect-ratio:16/9;">
+    <iframe id="videoTourIframe"
+      src=""
+      style="width:100%;height:100%;border:none;border-radius:8px;"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+      title="NILORA Resort Video Tour">
+    </iframe>
+  </div>
+
+  <!-- Controls bar -->
+  <div style="margin-top:1.25rem;display:flex;align-items:center;gap:1rem;">
+    <!-- Mute toggle -->
+    <button id="videoMuteBtn" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:0.55rem 1.2rem;border-radius:30px;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:0.5rem;letter-spacing:0.04em;transition:background 0.2s;">
+      <svg id="muteIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <span id="muteBtnLabel">Mute</span>
+    </button>
+    <!-- Book Now -->
+    <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer"
+       style="background:#c89f35;color:#fff;border:none;padding:0.6rem 1.6rem;border-radius:30px;font-size:0.9rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;display:flex;align-items:center;gap:0.5rem;cursor:pointer;transition:background 0.2s;"
+       onclick="window.open('https://niloraresort.bookus.direct/','_blank','noopener,noreferrer');return false;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Book Now
+    </a>
+  </div>
+</div>
+
+<script>
+(function() {
+  var modal = document.getElementById('videoTourModal');
+  var iframe = document.getElementById('videoTourIframe');
+  var closeBtn = document.getElementById('videoModalClose');
+  var muteBtn = document.getElementById('videoMuteBtn');
+  var muteBtnLabel = document.getElementById('muteBtnLabel');
+  var muteIcon = document.getElementById('muteIcon');
+  var tourBtn = document.getElementById('videoTourBtn');
+  var isMuted = true;
+  var player = null;
+  var YT_READY = false;
+
+  var MUTE_ICON = '<polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>';
+  var UNMUTE_ICON = '<polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+
+  // Load YouTube IFrame API
+  if (!window.YT) {
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  }
+  window.onYouTubeIframeAPIReady = function() { YT_READY = true; };
+
+  function openModal() {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    isMuted = true;
+    muteBtnLabel.textContent = 'Unmute';
+    muteIcon.innerHTML = UNMUTE_ICON;
+
+    if (window.YT && window.YT.Player) {
+      iframe.src = '';
+      player = new window.YT.Player('videoTourIframe', {
+        videoId: 'RnPa3MfHvtM',
+        playerVars: { autoplay: 1, mute: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+        events: { onReady: function(e) { e.target.playVideo(); } }
+      });
+    } else {
+      iframe.src = 'https://www.youtube.com/embed/RnPa3MfHvtM?autoplay=1&mute=1&rel=0&modestbranding=1&enablejsapi=1';
+    }
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    if (player && player.destroy) { player.destroy(); player = null; }
+    iframe.src = '';
+  }
+
+  function toggleMute() {
+    if (!player) return;
+    if (isMuted) {
+      player.unMute();
+      isMuted = false;
+      muteBtnLabel.textContent = 'Mute';
+      muteIcon.innerHTML = MUTE_ICON;
+    } else {
+      player.mute();
+      isMuted = true;
+      muteBtnLabel.textContent = 'Unmute';
+      muteIcon.innerHTML = UNMUTE_ICON;
+    }
+  }
+
+  if (tourBtn) tourBtn.addEventListener('click', function(e) { e.preventDefault(); openModal(); });
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (muteBtn) muteBtn.addEventListener('click', toggleMute);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
 })();
 </script>
 
