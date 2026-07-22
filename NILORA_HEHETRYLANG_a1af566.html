@@ -776,6 +776,110 @@ h4, h5, h6 { font-family: var(--font-body); font-weight: 600; }
 .accom-actions .btn { flex: 1; justify-content: center; font-size: 0.78rem; padding: 0.625rem 1rem; }
 
 
+/* ==================== HOME VILLA GRID ==================== */
+.home-villa-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.home-villa-card {
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(12,32,45,0.1);
+  border: 1px solid rgba(200,159,53,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.home-villa-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(12,32,45,0.18); }
+.home-villa-img {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.home-villa-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.home-villa-card:hover .home-villa-img img { transform: scale(1.05); }
+.home-villa-badge {
+  position: absolute;
+  top: 0.75rem; left: 0.75rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 3px;
+}
+.home-badge--gold    { background: var(--gold); color: var(--dark-green); }
+.home-badge--green   { background: var(--mid-green); color: #fff; }
+.home-badge--dark    { background: var(--dark-green); color: var(--gold); }
+.home-badge--premium { background: linear-gradient(135deg,#c9a96e,#a07a3b); color: #fff; }
+.home-villa-body {
+  padding: 1.25rem 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.home-villa-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-green);
+  margin-bottom: 0.2rem;
+  line-height: 1.25;
+}
+.home-villa-sub {
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+.home-villa-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+.home-villa-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-mid);
+}
+.home-villa-features .feat-icon {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+.btn-showcase {
+  display: block;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dark-green);
+  border: 1.5px solid var(--gold);
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  margin-top: auto;
+}
+.btn-showcase:hover { background: var(--gold); color: var(--dark-green); }
+@media (max-width: 1024px) { .home-villa-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .home-villa-grid { grid-template-columns: 1fr; } }
+
 /* ==================== ACCOM SHOWCASE (HOME) ==================== */
 .accom-showcase {
   display: grid;
@@ -6148,126 +6252,65 @@ img {
     <div class="container">
       <div class="section-header fade-up">
         <p class="eyebrow">Accommodation</p>
-        <h2 class="display-md">Three Bedroom Resort Villa</h2>
+        <h2 class="display-md">Find Your Perfect Villa</h2>
         <div class="gold-divider"></div>
-        <p>Ideal for families, groups, sports teams and extended stays – our generously appointed villas offer everything you need for a comfortable, resort-style experience.</p>
+        <p>32 private villas across four distinct types — from intimate garden retreats for couples to signature lagoon-front residences for groups and families.</p>
       </div>
-
-      <div class="accom-showcase fade-up">
-
-        <!-- Left Panel: Features -->
-        <div class="accom-showcase-left">
-          <div class="accom-showcase-title">Three Bedroom Resort Villa</div>
-          <ul class="accom-showcase-features">
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Accommodates up to 8 Guests
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Master Bedroom with Ensuite
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Additional Bedrooms
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Spacious Living Area
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Fully Equipped Kitchen
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Dining Area
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Laundry Facilities
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Private Balcony or Veranda
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Smart Television
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Air Conditioning
-            </li>
-            <li>
-              <svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>
-              Complimentary WiFi
-            </li>
-          </ul>
-          <div class="accom-showcase-cta">
-            <a href="#" class="btn-showcase" data-page="page-accommodation">View Accommodation</a>
+      <div class="home-villa-grid">
+        <div class="home-villa-card fade-up">
+          <div class="home-villa-img">
+            <img src="villa-photo-2.jpg" alt="One Bedroom Garden Villa — Nilora Resort" loading="lazy" />
+            <span class="home-villa-badge home-badge--gold">BEST FOR COUPLES</span>
+          </div>
+          <div class="home-villa-body">
+            <h3 class="home-villa-title">One Bedroom Garden Villa</h3>
+            <p class="home-villa-sub">Villas 1–5 · Up to 2 guests</p>
+            <ul class="home-villa-features"><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Private Covered Deck</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Fully Equipped Kitchen</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Garden Views</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Air Conditioning</li></ul>
+            <a href="#" class="btn-showcase" data-page="page-accommodation">View Details</a>
           </div>
         </div>
-
-        <!-- Center: Featured Image -->
-        <div class="accom-showcase-center">
-          <img src="resort-map-highlight.jpg"
-               alt="Three Bedroom Resort Villa — Nilora Resort Port Macquarie"
-               loading="lazy" decoding="async" />
+        <div class="home-villa-card fade-up">
+          <div class="home-villa-img">
+            <img src="villa-photo-3.jpg" alt="Two Bedroom Garden Villa — Nilora Resort" loading="lazy" />
+            <span class="home-villa-badge home-badge--green">PERFECT FOR FAMILIES</span>
+          </div>
+          <div class="home-villa-body">
+            <h3 class="home-villa-title">Two Bedroom Garden Villa</h3>
+            <p class="home-villa-sub">Villas 6–10 · Up to 4 guests</p>
+            <ul class="home-villa-features"><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>2 Spacious Bedrooms</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Open-Plan Living</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Tropical Garden</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Air Conditioning</li></ul>
+            <a href="#" class="btn-showcase" data-page="page-accommodation">View Details</a>
+          </div>
         </div>
-
-        <!-- Right Panel: Perfect For -->
-        <div class="accom-showcase-right">
-          <div class="accom-showcase-right-title">Perfect For</div>
-          <ul class="accom-perfect-list">
-            <li>
-              <div class="accom-perfect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-              </div>
-              Families
-            </li>
-            <li>
-              <div class="accom-perfect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
-                </svg>
-              </div>
-              Friends Traveling Together
-            </li>
-            <li>
-              <div class="accom-perfect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-                </svg>
-              </div>
-              Sporting Teams
-            </li>
-            <li>
-              <div class="accom-perfect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>
-                </svg>
-              </div>
-              Extended Stays
-            </li>
-            <li>
-              <div class="accom-perfect-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                </svg>
-              </div>
-              Corporate Travelers
-            </li>
-          </ul>
+        <div class="home-villa-card fade-up">
+          <div class="home-villa-img">
+            <img src="villa-photo-4.jpg" alt="Three Bedroom Garden Villa — Nilora Resort" loading="lazy" />
+            <span class="home-villa-badge home-badge--dark">MADE FOR GROUPS</span>
+          </div>
+          <div class="home-villa-body">
+            <h3 class="home-villa-title">Three Bedroom Garden Villa</h3>
+            <p class="home-villa-sub">Villas 11–19 &amp; 27–32 · Up to 8 guests</p>
+            <ul class="home-villa-features"><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>3 Bedrooms incl. Ensuite</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Private Patio &amp; BBQ</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Full Kitchen</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Laundry</li></ul>
+            <a href="#" class="btn-showcase" data-page="page-accommodation">View Details</a>
+          </div>
         </div>
-
-      </div><!-- end accom-showcase -->
-
+        <div class="home-villa-card fade-up">
+          <div class="home-villa-img">
+            <img src="villa-photo-5.jpg" alt="Three Bedroom Lagoon Villa — Nilora Resort" loading="lazy" />
+            <span class="home-villa-badge home-badge--premium">PREMIUM EXPERIENCE</span>
+          </div>
+          <div class="home-villa-body">
+            <h3 class="home-villa-title">Three Bedroom Lagoon Villa</h3>
+            <p class="home-villa-sub">Villas 20–26 · Up to 8 guests</p>
+            <ul class="home-villa-features"><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Direct Lagoon Access</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Panoramic Water Views</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Private Pontoon</li><li><svg class="feat-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 1l2.5 5.5L18 7.5l-4 4 .9 5.5L10 14l-4.9 3 .9-5.5-4-4 5.5-1z"/></svg>Gourmet Kitchen</li></ul>
+            <a href="#" class="btn-showcase" data-page="page-accommodation">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="#" class="btn btn-primary" data-page="page-accommodation">View All Villas</a>
+      </div>
     </div>
   </section>
-
   <!-- FACILITIES PREVIEW (HOME) -->
   <section class="section fac-preview-section">
     <div class="container">
@@ -8200,7 +8243,10 @@ img {
       <div class="footer-col">
         <h4>Accommodation</h4>
         <ul class="footer-links">
-          <li><a href="#" data-page="page-accommodation">3 Bedroom Resort Villa</a></li>
+          <li><a href="#" data-page="page-accommodation">One Bedroom Garden Villa</a></li>
+          <li><a href="#" data-page="page-accommodation">Two Bedroom Garden Villa</a></li>
+          <li><a href="#" data-page="page-accommodation">Three Bedroom Garden Villa</a></li>
+          <li><a href="#" data-page="page-accommodation">Three Bedroom Lagoon Villa</a></li>
           <li><a href="#" data-page="page-offers">Book Direct</a></li>
           <li><a href="#" data-page="page-offers">Special Offers</a></li>
         </ul>
