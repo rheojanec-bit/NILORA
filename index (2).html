@@ -8105,9 +8105,28 @@ img {
             </div>
           </div>
 
-          <div style="text-align:center;padding:2.5rem 1rem;background:var(--light-cream,#f9f5ef);border-radius:8px;border:1px dashed var(--gold,#c9a96e);">
-            <p style="font-size:1.1rem;font-weight:600;color:var(--dark-green);margin:0 0 0.4rem;">Location Map</p>
-            <span style="font-size:0.8em;background:var(--gold,#c9a96e);color:#1a2e1a;padding:3px 12px;border-radius:20px;font-weight:600;letter-spacing:0.05em;">Coming Soon</span>
+          <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(12,32,45,0.1);">
+            <iframe
+              src="https://www.google.com/maps?q=288+Hastings+River+Drive,+Port+Macquarie+NSW+2444,+Australia&output=embed"
+              width="100%"
+              height="260"
+              style="border:none;display:block;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="NILORA Resort Location Map">
+            </iframe>
+          </div>
+          <div style="text-align:center;margin-top:1rem;">
+            <p style="font-size:0.95rem;font-weight:600;color:var(--dark-green,#0c1e2d);margin:0 0 0.2rem;">288 Hastings River Drive</p>
+            <p style="font-size:0.82rem;color:#c89f35;margin:0 0 0.9rem;">Port Macquarie NSW 2444, Australia</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=288+Hastings+River+Drive,+Port+Macquarie+NSW+2444,+Australia"
+               target="_blank" rel="noopener noreferrer"
+               style="display:inline-block;padding:0.55rem 1.6rem;border:1.5px solid var(--dark-green,#0c1e2d);color:var(--dark-green,#0c1e2d);font-size:0.8rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:background 0.2s,color 0.2s;"
+               onmouseover="this.style.background='#0c1e2d';this.style.color='#fff'"
+               onmouseout="this.style.background='transparent';this.style.color='#0c1e2d'">
+              Open in Google Maps
+            </a>
           </div>
         </div>
 
