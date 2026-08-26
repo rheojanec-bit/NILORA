@@ -2154,13 +2154,14 @@ h4, h5, h6 { font-family: var(--font-body); font-weight: 600; }
 
 .event-type-card {
   background: var(--white);
-  border: 1px solid rgba(12,32,45,0.1);
+  border: 1px solid rgba(12,32,45,0.08);
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  transition: var(--transition);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(12,32,45,0.10);
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.35s ease;
 }
 
-.event-type-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(12,32,45,0.15); }
+.event-type-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(12,32,45,0.18); }
 
 .event-type-img {
   height: 220px;
@@ -4780,12 +4781,13 @@ img {
 
 /* Image container — photo version */
 .event-type-img--photo {
-  height: 220px !important;
+  height: 280px !important;
   position: relative !important;
   overflow: hidden !important;
   background: var(--dark-green) !important;
   flex-shrink: 0 !important;
   display: block !important;
+  border-radius: 0 !important;
 }
 
 /* The photo */
@@ -4797,24 +4799,26 @@ img {
   object-fit: cover !important;
   object-position: center center !important;
   display: block !important;
-  transform: scale(0.85) !important;
-  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1) !important;
+  transform: scale(1.0) !important;
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94) !important;
   z-index: 0 !important;
+  filter: brightness(0.92) saturate(1.08) !important;
 }
 
 .event-type-card:hover .event-photo {
-  transform: scale(0.9) !important;
+  transform: scale(1.06) !important;
+  filter: brightness(1.0) saturate(1.12) !important;
 }
 
-/* Dark overlay — light gradient for text legibility */
+/* Dark overlay — elegant gradient for luxury feel */
 .event-photo-overlay {
   position: absolute !important;
   inset: 0 !important;
   background: linear-gradient(
     to top,
-    rgba(6,14,26,0.65) 0%,
-    rgba(6,14,26,0.22) 50%,
-    rgba(6,14,26,0.08) 100%
+    rgba(4,18,28,0.55) 0%,
+    rgba(4,18,28,0.15) 45%,
+    rgba(4,18,28,0.0) 100%
   ) !important;
   z-index: 1 !important;
   pointer-events: none !important;
