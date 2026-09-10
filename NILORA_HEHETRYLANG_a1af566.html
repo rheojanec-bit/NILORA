@@ -6943,9 +6943,7 @@ img {
         <!-- LIVE BLOG ARTICLE — NILORA Now Open -->
         <div class="blog-card" data-nilora-post-cat="resort">
           <div class="blog-img blog-img--photo">
-            <div style="width:100%;height:100%;background:linear-gradient(135deg,#0C202D 0%,#0A5F8F 55%,#C89F35 100%);display:flex;align-items:center;justify-content:center;">
-              <svg width="54" height="54" viewBox="0 0 54 54" fill="none" style="opacity:0.35"><path d="M10 44V24L27 10l17 14v20" stroke="#fff" stroke-width="2"/><rect x="19" y="30" width="16" height="14" rx="1" stroke="#fff" stroke-width="2"/><circle cx="27" cy="20" r="4" stroke="#fff" stroke-width="2"/></svg>
-            </div>
+            <img src="image-61.jpg" class="blog-card-photo" alt="NILORA Resort Port Macquarie — resort grounds" loading="lazy" decoding="async" />
             <div class="blog-photo-overlay"></div>
             <span class="blog-cat" style="background:var(--gold);color:#fff;">Resort</span>
           </div>
@@ -8619,8 +8617,16 @@ document.addEventListener('DOMContentLoaded', () => {
     el.outerHTML = '<div class="ornament-divider"><div class="ornament-diamond"></div></div>';
   });
 
-  // Show home page by default
-  showPage('page-home');
+  // Show home page by default (or hash-targeted section from external links)
+  (function() {
+    var hash = window.location.hash.replace('#', '');
+    var validPages = ['page-home','page-accommodation','page-facilities','page-wellness','page-dining','page-explore','page-gallery','page-contact'];
+    if (hash && validPages.indexOf(hash) !== -1) {
+      showPage(hash);
+    } else {
+      showPage('page-home');
+    }
+  })();
 
   // ============================================================
   // EXPLORE PAGE — Interactive Map Logic
