@@ -60,21 +60,17 @@
   }
   </script>
 
-  <!-- Fonts (matching main site) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
-    /* ============================================================
-       NILORA BLOG — shares design tokens with main site
-       ============================================================ */
     :root {
       --dark-green: #0C202D;
       --mid-green:  #0A5F8F;
       --light-green:#006FA6;
       --gold:       #C89F35;
-      --gold-light: #D6BC22;
       --white:      #ffffff;
       --cream:      #F3EFE7;
       --cream-dark: #E8E2D5;
@@ -97,7 +93,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; }
     h4, h5, h6 { font-family: var(--font-body); font-weight: 600; }
 
@@ -109,357 +104,209 @@
       text-transform: uppercase;
       color: var(--gold);
       display: block;
-      margin-bottom: 0.6rem;
     }
-
     .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* ---- NAVIGATION (matches main site) ---- */
+    /* NAV */
     #navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
+      position: fixed; top: 0; width: 100%; z-index: 1000;
       background: rgba(12,32,45,0.97);
       backdrop-filter: blur(12px);
       padding: 0.5rem 0;
       box-shadow: 0 2px 30px rgba(0,0,0,0.3);
     }
     .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1400px; margin: 0 auto; padding: 0 2rem;
     }
     .nav-logo img { height: 72px; width: auto; object-fit: contain; display: block; }
     .nav-logo { text-decoration: none; }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
     .nav-links a {
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.82);
-      text-decoration: none;
-      padding: 0.5rem 0.85rem;
-      border-radius: 4px;
-      transition: var(--transition);
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.82); text-decoration: none;
+      padding: 0.5rem 0.85rem; border-radius: 4px; transition: var(--transition);
     }
     .nav-links a:hover { color: var(--gold); }
     .nav-book {
-      background: var(--gold);
-      color: var(--dark-green) !important;
-      font-weight: 600 !important;
-      padding: 0.55rem 1.3rem !important;
-      border-radius: 4px;
+      background: var(--gold) !important; color: var(--dark-green) !important;
+      font-weight: 600 !important; padding: 0.55rem 1.3rem !important; border-radius: 4px;
     }
-    .nav-book:hover { background: #D4AA45; }
-
-    /* Hamburger — mobile */
+    .nav-book:hover { background: #D4AA45 !important; }
     .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.85); border-radius: 2px; transition: var(--transition); }
+    .hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.85); border-radius: 2px; }
+    .nav-close-btn {
+      display: none; position: fixed; top: 1.25rem; right: 1.5rem; z-index: 1001;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.7); font-size: 1.5rem; line-height: 1;
+    }
+    .nav-open .nav-links {
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(12,32,45,0.98);
+      padding: 6rem 2rem 2rem; gap: 0.25rem; z-index: 999; overflow-y: auto;
+    }
+    .nav-open .nav-links a { font-size: 1rem; padding: 0.75rem 1rem; }
+    .nav-open .nav-close-btn { display: block; }
 
-    /* ---- HERO ---- */
+    /* HERO */
     .blog-hero {
-      margin-top: 88px;
-      position: relative;
-      min-height: 480px;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-      background: var(--dark-green);
+      margin-top: 88px; position: relative; min-height: 500px;
+      display: flex; align-items: flex-end; overflow: hidden; background: var(--dark-green);
     }
     .blog-hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      opacity: 0.55;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center; opacity: 0.55;
     }
     .blog-hero-placeholder {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(135deg, #0C202D 0%, #0A5F8F 60%, #C89F35 100%);
-      opacity: 0.7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.5rem;
+      opacity: 0.75; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.6rem;
     }
-    .blog-hero-placeholder-label {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+    .blog-hero-placeholder span {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4);
     }
     .blog-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(12,32,45,0.85) 0%, rgba(12,32,45,0.3) 60%, rgba(12,32,45,0.1) 100%);
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,32,45,0.9) 0%, rgba(12,32,45,0.35) 55%, rgba(12,32,45,0.08) 100%);
     }
     .blog-hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 3rem 1.5rem;
-      max-width: 860px;
-      margin: 0 auto;
-      width: 100%;
+      position: relative; z-index: 2; padding: 3.5rem 1.5rem;
+      max-width: 860px; margin: 0 auto; width: 100%;
     }
-    .blog-hero-content .eyebrow { color: var(--gold); margin-bottom: 1rem; }
+    .blog-hero-content .eyebrow { margin-bottom: 1.1rem; }
     .blog-hero-content h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 1.25rem;
-      line-height: 1.2;
+      font-size: clamp(1.9rem, 4.5vw, 3.1rem); font-weight: 700;
+      color: var(--white); margin-bottom: 1.5rem; line-height: 1.2;
     }
-    .blog-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+    .blog-meta-row {
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
     }
     .blog-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.65);
-      font-family: var(--font-body);
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; color: rgba(255,255,255,0.6); font-family: var(--font-body);
     }
 
-    /* ---- ARTICLE BODY ---- */
-    .blog-body {
-      padding: 4rem 0 5rem;
+    /* BREADCRUMB */
+    .blog-breadcrumb {
+      padding: 1rem 1.5rem; background: var(--cream); border-bottom: 1px solid var(--cream-dark);
     }
+    .blog-breadcrumb nav { max-width: 1100px; margin: 0 auto; font-size: 0.78rem; color: var(--text-light); }
+    .blog-breadcrumb a { color: var(--text-light); text-decoration: none; transition: var(--transition); }
+    .blog-breadcrumb a:hover { color: var(--gold); }
+    .blog-breadcrumb span { margin: 0 0.5rem; opacity: 0.5; }
+
+    /* BODY */
+    .blog-body { padding: 4rem 0 5rem; }
     .blog-layout {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 4rem; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
     }
 
-    /* Article content */
+    /* Article */
     .blog-article p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: var(--text-mid);
-      margin-bottom: 1.5rem;
+      font-size: 1.05rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 1.5rem;
     }
     .blog-article h2 {
-      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-      color: var(--dark-green);
-      margin: 2.5rem 0 1rem;
-      font-weight: 600;
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem); color: var(--dark-green);
+      margin: 2.75rem 0 1rem; font-weight: 600;
     }
     .blog-article .lead {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      line-height: 1.75;
-      color: var(--text-mid);
-      margin-bottom: 2rem;
-      font-weight: 400;
+      font-family: var(--font-serif); font-size: 1.3rem; line-height: 1.8;
+      color: var(--text-dark); margin-bottom: 2rem; font-weight: 400;
+      border-left: 3px solid var(--gold); padding-left: 1.25rem;
     }
+    .blog-article strong { color: var(--dark-green); font-weight: 600; }
 
-    /* Image placeholders */
-    .blog-img-wrap {
-      margin: 2.5rem 0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .blog-img-wrap img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    /* Image block */
+    .blog-img-wrap { margin: 2.5rem 0; border-radius: 10px; overflow: hidden; }
+    .blog-img-wrap img { width: 100%; height: auto; display: block; }
     .blog-img-placeholder {
-      width: 100%;
-      aspect-ratio: 16/9;
+      width: 100%; aspect-ratio: 16/9;
       background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      color: var(--text-light);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.75rem; color: var(--text-light);
     }
-    .blog-img-placeholder svg { opacity: 0.4; }
-    .blog-img-placeholder span {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-    .blog-img-caption {
-      font-size: 0.78rem;
-      color: var(--text-light);
-      padding: 0.6rem 0 0;
-      font-style: italic;
-    }
+    .blog-img-placeholder svg { opacity: 0.35; }
+    .blog-img-placeholder span { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; }
+    .blog-img-caption { font-size: 0.78rem; color: var(--text-light); padding: 0.6rem 0 0; font-style: italic; }
 
     /* Pull quote */
     .blog-pullquote {
-      border-left: 3px solid var(--gold);
-      padding: 1.25rem 1.75rem;
-      margin: 2.5rem 0;
-      background: var(--cream);
-      border-radius: 0 8px 8px 0;
+      background: var(--dark-green); border-radius: 10px;
+      padding: 2rem 2.25rem; margin: 2.5rem 0;
     }
     .blog-pullquote p {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      line-height: 1.65;
-      color: var(--dark-green);
-      font-style: italic;
-      margin: 0 !important;
+      font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.7;
+      color: rgba(255,255,255,0.9); font-style: italic; margin: 0 !important;
     }
+    .blog-pullquote p::before { content: '\201C'; color: var(--gold); font-size: 1.5rem; line-height: 0; vertical-align: -0.35em; margin-right: 0.15em; }
+    .blog-pullquote p::after  { content: '\201D'; color: var(--gold); font-size: 1.5rem; line-height: 0; vertical-align: -0.35em; margin-left: 0.15em; }
 
-    /* Amenities list */
+    /* Amenities */
     .blog-amenities {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem 2rem;
-      margin: 1.25rem 0 1.75rem;
-      padding: 0;
-      list-style: none;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 2rem; margin: 1.25rem 0 1.75rem; list-style: none;
     }
     .blog-amenities li {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.9rem;
-      color: var(--text-mid);
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.9rem; color: var(--text-mid);
     }
     .blog-amenities li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
     }
 
-    /* CTA block */
+    /* Divider */
+    .blog-divider { border: none; border-top: 1px solid var(--cream-dark); margin: 2.5rem 0; }
+
+    /* CTA */
     .blog-cta {
-      background: var(--dark-green);
-      border-radius: 12px;
-      padding: 2.5rem;
-      text-align: center;
-      margin-top: 3rem;
+      background: var(--dark-green); border-radius: 12px;
+      padding: 3rem 2.5rem; text-align: center; margin-top: 3.5rem;
     }
     .blog-cta .eyebrow { color: var(--gold); margin-bottom: 0.75rem; }
-    .blog-cta h2 {
-      color: var(--white);
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      margin-bottom: 1rem;
-    }
-    .blog-cta p {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.95rem;
-      max-width: 520px;
-      margin: 0 auto 1.75rem;
-      line-height: 1.7;
-    }
-    .blog-cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .blog-cta h2 { color: var(--white); font-size: clamp(1.4rem, 2.5vw, 2rem); margin-bottom: 1rem; }
+    .blog-cta p { color: rgba(255,255,255,0.65); font-size: 0.95rem; max-width: 520px; margin: 0 auto 2rem; line-height: 1.75; }
+    .blog-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* Buttons */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      border: none;
-      cursor: pointer;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: var(--transition);
-      border-radius: 4px;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2rem; border: none; cursor: pointer;
+      font-family: var(--font-body); font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+      transition: var(--transition); border-radius: 4px;
     }
     .btn-primary { background: var(--gold); color: var(--dark-green); }
     .btn-primary:hover { background: #D4AA45; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,159,53,0.4); }
-    .btn-outline-light {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.5);
-      color: rgba(255,255,255,0.88);
-    }
-    .btn-outline-light:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); }
+    .btn-outline-light { background: transparent; border: 1px solid rgba(255,255,255,0.45); color: rgba(255,255,255,0.85); }
+    .btn-outline-light:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.75); }
 
     /* Sidebar */
     .blog-sidebar { position: sticky; top: 110px; align-self: start; }
-    .sidebar-card {
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 1.75rem;
-      margin-bottom: 1.5rem;
-    }
-    .sidebar-card h4 {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .sidebar-card p {
-      font-size: 0.88rem;
-      color: var(--text-mid);
-      line-height: 1.65;
-      margin-bottom: 1rem;
-    }
+    .sidebar-card { background: var(--cream); border-radius: 10px; padding: 1.75rem; margin-bottom: 1.5rem; }
+    .sidebar-card h4 { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .sidebar-card p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; margin-bottom: 1rem; }
     .sidebar-card .btn { width: 100%; justify-content: center; }
     .sidebar-links { list-style: none; }
     .sidebar-links li { border-bottom: 1px solid rgba(12,32,45,0.08); }
     .sidebar-links li:last-child { border-bottom: none; }
-    .sidebar-links a {
-      display: block;
-      padding: 0.65rem 0;
-      font-size: 0.875rem;
-      color: var(--text-mid);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .sidebar-links a:hover { color: var(--gold); padding-left: 0.35rem; }
+    .sidebar-links a { display: block; padding: 0.65rem 0; font-size: 0.875rem; color: var(--text-mid); text-decoration: none; transition: var(--transition); }
+    .sidebar-links a:hover { color: var(--gold); padding-left: 0.3rem; }
 
-    /* ---- FOOTER ---- */
-    .footer {
-      background: var(--dark-green);
-      color: rgba(255,255,255,0.7);
-      padding: 4rem 0 0;
-    }
+    /* FOOTER */
+    .footer { background: var(--dark-green); color: rgba(255,255,255,0.7); padding: 4rem 0 0; }
     .footer-grid {
-      display: grid;
-      grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
-      gap: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+      gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .footer-brand p { font-size: 0.875rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin: 1rem 0 1.25rem; }
     .footer-logo-img { height: 72px; width: auto; object-fit: contain; display: block; }
     .social-links { display: flex; gap: 0.6rem; }
-    .social-link {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.55);
-      text-decoration: none;
-      transition: var(--transition);
-    }
+    .social-link { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.55); text-decoration: none; transition: var(--transition); }
     .social-link:hover { border-color: var(--gold); color: var(--gold); }
     .footer-col h4 { color: var(--white); font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.25rem; }
     .footer-links { list-style: none; }
@@ -469,76 +316,44 @@
     .footer-contact p { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 0.65rem; line-height: 1.6; }
     .footer-contact a { color: rgba(255,255,255,0.55); text-decoration: none; transition: var(--transition); }
     .footer-contact a:hover { color: var(--gold); }
-    .footer-bottom {
-      padding: 1.25rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
+    .footer-bottom { padding: 1.25rem 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
     .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
     .footer-bottom-links { display: flex; gap: 1.25rem; }
     .footer-bottom-links a { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: var(--transition); }
     .footer-bottom-links a:hover { color: var(--gold); }
 
-    /* ---- RESPONSIVE ---- */
+    /* Scroll top */
+    #scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
+      width: 44px; height: 44px; background: var(--dark-green);
+      border: 1px solid rgba(200,159,53,0.4); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); cursor: pointer; opacity: 0; pointer-events: none; transition: var(--transition);
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: auto; }
+    #scroll-top:hover { background: var(--gold); color: var(--dark-green); transform: translateY(-3px); }
+
+    /* RESPONSIVE */
     @media (max-width: 960px) {
       .blog-layout { grid-template-columns: 1fr; gap: 3rem; }
       .blog-sidebar { position: static; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
     @media (max-width: 640px) {
-      .blog-hero { min-height: 360px; margin-top: 72px; }
+      .blog-hero { min-height: 380px; margin-top: 72px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .blog-amenities { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
       .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
       .blog-cta { padding: 2rem 1.25rem; }
+      .blog-pullquote { padding: 1.5rem; }
     }
-
-    /* Mobile nav open state */
-    .nav-open .nav-links {
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(12,32,45,0.98);
-      padding: 6rem 2rem 2rem;
-      gap: 0.25rem;
-      z-index: 999;
-      overflow-y: auto;
-    }
-    .nav-open .nav-links a { font-size: 1rem; padding: 0.75rem 1rem; }
-    .nav-close-btn {
-      display: none;
-      position: fixed; top: 1.25rem; right: 1.5rem; z-index: 1001;
-      background: none; border: none; cursor: pointer;
-      color: rgba(255,255,255,0.7); font-size: 1.5rem; line-height: 1;
-    }
-    .nav-open .nav-close-btn { display: block; }
-
-    /* Back to top */
-    #scroll-top {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 900;
-      width: 44px; height: 44px;
-      background: var(--dark-green);
-      border: 1px solid rgba(200,159,53,0.4);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gold);
-      cursor: pointer;
-      opacity: 0; pointer-events: none;
-      transition: var(--transition);
-    }
-    #scroll-top.visible { opacity: 1; pointer-events: auto; }
-    #scroll-top:hover { background: var(--gold); color: var(--dark-green); transform: translateY(-3px); }
   </style>
 </head>
 <body>
 
-<!-- ==================== NAVIGATION ==================== -->
+<!-- NAV -->
 <nav id="navbar">
   <div class="nav-inner">
     <a href="../index.html" class="nav-logo">
@@ -550,58 +365,67 @@
     <button class="nav-close-btn" id="navClose" aria-label="Close menu">✕</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="../index.html">Home</a></li>
-      <li><a href="../index.html#accommodation">Accommodation</a></li>
-      <li><a href="../index.html#facilities">Facilities</a></li>
-      <li><a href="../index.html#things-to-do">Things To Do</a></li>
-      <li><a href="../index.html#wellness">Wellness</a></li>
-      <li><a href="../index.html#gallery">Gallery</a></li>
-      <li><a href="../index.html#explore">Explore</a></li>
-      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../index.html">Accommodation</a></li>
+      <li><a href="../index.html">Facilities</a></li>
+      <li><a href="../index.html">Things To Do</a></li>
+      <li><a href="../index.html">Wellness</a></li>
+      <li><a href="../index.html">Gallery</a></li>
+      <li><a href="../index.html">Explore</a></li>
+      <li><a href="../index.html">Contact</a></li>
       <li><a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="nav-book">Book Now</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
+<!-- HERO -->
 <section class="blog-hero">
-  <!-- Replace the placeholder below with a real NILORA resort photo -->
-  <!-- <img src="nilora-opening-hero.jpg" alt="NILORA Resort Port Macquarie — aerial view of resort grounds and villas" class="blog-hero-img" /> -->
+  <!-- Replace placeholder with real photo: <img src="nilora-opening-hero.jpg" alt="NILORA Resort Port Macquarie — resort grounds and villas" class="blog-hero-img" /> -->
   <div class="blog-hero-placeholder">
-    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-    <span class="blog-hero-placeholder-label">Replace with NILORA resort photo</span>
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    <span>Replace with NILORA resort hero photo</span>
   </div>
   <div class="blog-hero-overlay"></div>
   <div class="blog-hero-content container">
-    <span class="eyebrow">Resort News &nbsp;·&nbsp; September 2026</span>
+    <span class="eyebrow">Opening News &nbsp;·&nbsp; Resort</span>
     <h1>NILORA Resorts &amp; Hotels Is Now Open in Port Macquarie</h1>
-    <div class="blog-meta">
+    <div class="blog-meta-row">
       <span class="blog-meta-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         10 September 2026
       </span>
       <span class="blog-meta-item">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        5 min read
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        4 min read
       </span>
       <span class="blog-meta-item">NILORA Resorts &amp; Hotels</span>
     </div>
   </div>
 </section>
 
-<!-- ==================== ARTICLE BODY ==================== -->
+<!-- BREADCRUMB -->
+<div class="blog-breadcrumb">
+  <nav aria-label="Breadcrumb">
+    <a href="../index.html">Home</a>
+    <span>›</span>
+    <a href="../index.html">Explore</a>
+    <span>›</span>
+    NILORA Is Now Open
+  </nav>
+</div>
+
+<!-- ARTICLE -->
 <div class="blog-body">
   <div class="blog-layout">
 
-    <!-- Main Article -->
     <article class="blog-article">
 
       <p class="lead">A new coastal escape has arrived in Port Macquarie. NILORA Resorts &amp; Hotels is now open, welcoming families, couples, friends and groups to experience spacious villa living, landscaped surroundings and resort-style facilities in a relaxed coastal setting.</p>
 
-      <p>Designed as more than simply somewhere to sleep, NILORA gives you room to slow down, reconnect and enjoy Port Macquarie at your own pace.</p>
+      <p>Designed as more than simply somewhere to sleep, NILORA gives guests room to slow down, reconnect and enjoy Port Macquarie at their own pace.</p>
 
-      <!-- Image placeholder 1 -->
+      <!-- Image 1 — replace src with real resort photo -->
       <div class="blog-img-wrap">
-        <!-- Replace with: <img src="nilora-resort-grounds.jpg" alt="NILORA Resort Port Macquarie — landscaped resort grounds and entrance" /> -->
+        <!-- <img src="nilora-resort-entrance.jpg" alt="NILORA Resort Port Macquarie — resort entrance and landscaped grounds" /> -->
         <div class="blog-img-placeholder">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           <span>Resort grounds photo — replace with real image</span>
@@ -611,39 +435,37 @@
 
       <h2>A New Way to Stay in Port Macquarie</h2>
 
-      <p>At NILORA, the freedom of self-contained villa accommodation meets the experience of a resort.</p>
+      <p>At NILORA, the freedom and comfort of <strong>self-contained villa accommodation</strong> come together with the experience of a resort.</p>
 
-      <p>Spend the day exploring Port Macquarie, enjoy time around the resort, stay active or simply settle into your villa and enjoy a slower afternoon. With generous spaces and a welcoming atmosphere, your stay can be as relaxed or as active as you choose.</p>
+      <p>Spend the day discovering Port Macquarie, enjoy time around the resort, stay active or simply settle into your villa for a slower afternoon. With generous spaces and a welcoming atmosphere, your stay can be as relaxed or as active as you choose.</p>
+
+      <p>It's about making the resort part of your holiday — not just somewhere to sleep.</p>
 
       <div class="blog-pullquote">
-        <p>"Because sometimes the best part of a getaway is having nowhere else you need to be."</p>
+        <p>It's about making the resort part of your holiday — not just somewhere to sleep.</p>
       </div>
 
-      <h2>Find Your Space at NILORA</h2>
+      <h2>Space to Stay Your Way</h2>
 
       <p>Every getaway is different, which is why NILORA offers a selection of villas designed for different ways of travelling.</p>
 
-      <p>Choose from our <strong>One Bedroom Garden Villa</strong> for couples and two-person stays, <strong>Two Bedroom Garden Villa</strong> for small families and friends, or <strong>Three Bedroom Garden Villa</strong> for families and groups looking for more room to stay together.</p>
+      <p>Couples can retreat to the <strong>One Bedroom Garden Villa</strong>, while small families and friends can enjoy the flexibility of the <strong>Two Bedroom Garden Villa</strong>. For larger families and groups, the <strong>Three Bedroom Garden Villa</strong> provides generous shared living, while the <strong>Three Bedroom Lagoon Villa</strong> offers a signature waterside setting for those looking for something extra special.</p>
 
-      <p>For a signature waterside setting, the <strong>Three Bedroom Lagoon Villa</strong> offers spacious accommodation for premium family and group stays.</p>
+      <p>Whether it's a weekend for two, a family holiday or time away with friends, NILORA gives you <strong>space to stay your way</strong>.</p>
 
-      <p>Whether it's a weekend for two, a family holiday or a getaway with friends, there's space to stay your way at NILORA.</p>
-
-      <!-- Image placeholder 2 -->
+      <!-- Image 2 — replace src with real villa photo -->
       <div class="blog-img-wrap">
-        <!-- Replace with: <img src="nilora-villa-interior.jpg" alt="NILORA Resort — spacious villa interior with modern furnishings" /> -->
+        <!-- <img src="nilora-villa-interior.jpg" alt="NILORA Resort — spacious self-contained villa interior" /> -->
         <div class="blog-img-placeholder">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           <span>Villa interior photo — replace with real image</span>
         </div>
-        <p class="blog-img-caption">Spacious, self-contained villas designed for comfort and coastal living.</p>
+        <p class="blog-img-caption">Spacious, self-contained villas for couples, families and groups.</p>
       </div>
 
       <h2>More Than Somewhere to Sleep</h2>
 
-      <p>Your holiday doesn't have to begin when you leave the resort. NILORA brings together comfortable accommodation with resort facilities designed for relaxation, recreation and time together.</p>
-
-      <p>Guests can enjoy:</p>
+      <p>A memorable getaway is about more than your accommodation. Across NILORA, guests can enjoy:</p>
 
       <ul class="blog-amenities">
         <li>Landscaped resort grounds</li>
@@ -656,38 +478,42 @@
         <li>Convenient onsite parking</li>
       </ul>
 
-      <p>Whether you're starting the morning with something active or spending the afternoon unwinding, the resort gives you more ways to enjoy your stay.</p>
+      <p>Start the day with something active, spend time together around the resort or simply slow down and enjoy having nowhere else you need to be.</p>
 
-      <!-- Image placeholder 3 -->
+      <!-- Image 3 — replace src with real facilities photo -->
       <div class="blog-img-wrap">
-        <!-- Replace with: <img src="nilora-pool-facilities.jpg" alt="NILORA Resort Port Macquarie — indoor pool and resort facilities" /> -->
+        <!-- <img src="nilora-pool-facilities.jpg" alt="NILORA Resort Port Macquarie — indoor pool and resort facilities" /> -->
         <div class="blog-img-placeholder">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span>Pool / facilities photo — replace with real image</span>
+          <span>Pool &amp; facilities photo — replace with real image</span>
         </div>
         <p class="blog-img-caption">Resort facilities including the indoor pool, open daily 8:00 AM – 9:00 PM.</p>
       </div>
 
-      <h2>Escape to Port Macquarie</h2>
+      <h2>Your Port Macquarie Escape</h2>
 
-      <p>NILORA is also a place to call home while discovering Port Macquarie and its coastal surroundings. Explore the destination during the day and return to the comfort and space of the resort when you're ready to unwind.</p>
+      <p>Beyond the resort, Port Macquarie and its coastal surroundings are waiting to be discovered. Explore during the day and return to the space and comfort of NILORA when you're ready to unwind.</p>
 
-      <p>For families, couples and groups alike, it's a stay designed around choice — explore when you want to explore, relax when you want to relax.</p>
+      <p>It's a stay designed around choice — <strong>explore when you want to explore, relax when you want to relax.</strong></p>
+
+      <hr class="blog-divider" />
 
       <h2>Your Coastal Escape Awaits</h2>
 
-      <p>With our doors now open, we're excited to welcome you to NILORA Resorts &amp; Hotels and a new resort experience in Port Macquarie.</p>
+      <p>With our doors now open, we're excited to welcome you to <strong>NILORA Resorts &amp; Hotels</strong> and a new resort experience in Port Macquarie.</p>
 
       <p>Come for a weekend away, bring the family together, gather with friends or simply give yourself a few days to slow down.</p>
 
-      <p><em>Relax. Play. Reconnect.</em></p>
+      <p><em><strong>Relax. Play. Reconnect.</strong></em></p>
+
+      <p>Discover NILORA, explore our villas and start planning your Port Macquarie escape today.</p>
 
       <!-- CTA -->
       <div class="blog-cta">
         <span class="eyebrow">Start Planning</span>
-        <h2>Discover NILORA &amp; Book Your Stay</h2>
+        <h2>Book Your Stay at NILORA</h2>
         <p>Explore our villa options and find the perfect coastal escape for your next Port Macquarie getaway.</p>
-        <div class="blog-cta-buttons">
+        <div class="blog-cta-btns">
           <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Now</a>
           <a href="../index.html" class="btn btn-outline-light">View Accommodation</a>
         </div>
@@ -703,48 +529,49 @@
         <a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Check Availability</a>
       </div>
       <div class="sidebar-card">
-        <h4>Quick Links</h4>
+        <h4>Explore the Resort</h4>
         <ul class="sidebar-links">
-          <li><a href="../index.html">Home</a></li>
           <li><a href="../index.html">Accommodation</a></li>
           <li><a href="../index.html">Facilities</a></li>
           <li><a href="../index.html">Wellness</a></li>
           <li><a href="../index.html">Things To Do</a></li>
+          <li><a href="../index.html">Gallery</a></li>
           <li><a href="../index.html">Contact</a></li>
         </ul>
       </div>
       <div class="sidebar-card">
         <h4>Contact Us</h4>
-        <p>288 Hastings River Drive,<br/>Port Macquarie NSW 2444</p>
-        <p><a href="mailto:booking@nilora.com.au" style="color:var(--text-mid);text-decoration:none;">booking@nilora.com.au</a></p>
-        <p><a href="tel:+61265835544" style="color:var(--text-mid);text-decoration:none;">+61 2 6583 5544</a></p>
+        <p style="margin-bottom:0.4rem;">288 Hastings River Drive,<br/>Port Macquarie NSW 2444</p>
+        <p style="margin-bottom:0.4rem;"><a href="mailto:booking@nilora.com.au" style="color:var(--text-mid);text-decoration:none;">booking@nilora.com.au</a></p>
+        <p style="margin-bottom:0;"><a href="tel:+61265835544" style="color:var(--text-mid);text-decoration:none;">+61 2 6583 5544</a></p>
       </div>
     </aside>
 
   </div>
 </div>
 
-<!-- ==================== FOOTER ==================== -->
+<!-- BACK TO TOP -->
 <button id="scroll-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="../index.html" class="footer-logo">
+        <a href="../index.html">
           <img src="../image-62.png" alt="NILORA Resorts &amp; Hotels" class="footer-logo-img" />
         </a>
         <p>A premier coastal resort destination offering luxury villas, premium facilities and unforgettable experiences in the heart of Port Macquarie, NSW.</p>
         <div class="social-links">
-          <a href="https://www.facebook.com/share/1Ed1Dd4cwu/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-link" title="Facebook" aria-label="Facebook">
+          <a href="https://www.facebook.com/share/1Ed1Dd4cwu/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
             <svg width="15" height="15" viewBox="0 0 32 32" fill="currentColor"><path d="M18 3h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V8a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="https://www.linkedin.com/company/the-nilora-hotels-resorts/" target="_blank" rel="noopener" class="social-link" title="LinkedIn" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/the-nilora-hotels-resorts/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
             <svg width="15" height="15" viewBox="0 0 32 32" fill="currentColor"><path d="M27 3H5a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-15 21H8V13h4v11zm-2-12.5a2.3 2.3 0 1 1 0-4.6 2.3 2.3 0 0 1 0 4.6zM24 24h-4v-5.5c0-1.4-.5-2.4-1.8-2.4-.9 0-1.5.6-1.8 1.2-.1.2-.1.5-.1.8V24h-4V13h4v1.5c.5-.8 1.5-2 3.5-2 2.6 0 4.2 1.7 4.2 5.3V24z"/></svg>
           </a>
-          <a href="https://www.instagram.com/niloraportmacquarie/" target="_blank" rel="noopener" class="social-link" title="Instagram" aria-label="Instagram">
+          <a href="https://www.instagram.com/niloraportmacquarie/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
             <svg width="15" height="15" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="26" height="26" rx="6"/><circle cx="16" cy="16" r="6"/><circle cx="23.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/></svg>
           </a>
         </div>
@@ -796,20 +623,11 @@
 </footer>
 
 <script>
-  // Scroll-to-top button
   const scrollBtn = document.getElementById('scroll-top');
-  window.addEventListener('scroll', () => {
-    scrollBtn.classList.toggle('visible', window.scrollY > 400);
-  });
-
-  // Mobile nav
-  const hamburger = document.getElementById('hamburger');
-  const navClose  = document.getElementById('navClose');
-  hamburger.addEventListener('click', () => document.body.classList.add('nav-open'));
-  navClose.addEventListener('click',  () => document.body.classList.remove('nav-open'));
-  document.querySelectorAll('#navLinks a').forEach(a => {
-    a.addEventListener('click', () => document.body.classList.remove('nav-open'));
-  });
+  window.addEventListener('scroll', () => { scrollBtn.classList.toggle('visible', window.scrollY > 400); });
+  document.getElementById('hamburger').addEventListener('click', () => document.body.classList.add('nav-open'));
+  document.getElementById('navClose').addEventListener('click',  () => document.body.classList.remove('nav-open'));
+  document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('nav-open')));
 </script>
 
 </body>
