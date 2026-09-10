@@ -8620,7 +8620,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Show home page by default (or hash-targeted section from external links)
   (function() {
     var hash = window.location.hash.replace('#', '');
-    var validPages = ['page-home','page-accommodation','page-facilities','page-wellness','page-dining','page-explore','page-gallery','page-contact'];
+    var validPages = ['page-home','page-accommodation','page-facilities','page-things-to-do','page-events','page-gallery','page-explore','page-contact'];
     if (hash && validPages.indexOf(hash) !== -1) {
       showPage(hash);
     } else {
