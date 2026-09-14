@@ -271,6 +271,7 @@ h4, h5, h6 { font-family: var(--font-body); font-weight: 600; }
 .nav-book:hover { background: var(--gold-light) !important; }
 .nav-book::after { display: none !important; }
 
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -5954,6 +5955,162 @@ img {
   padding-left: 0.4rem;
 }
 .vmp-rooms-list li.active .room-name { color: var(--dark-green); }
+
+/* ===== AMOUNT MODAL ===== */
+.amount-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(4, 7, 14, 0.70);
+    z-index: 999999;
+}
+.amount-modal .amount-popup {
+    position: relative;
+    width: 430px;
+    max-width: calc(100% - 40px);
+    padding: 38px 36px 36px;
+    background: linear-gradient(145deg, #181c27 0%, #080c16 100%);
+    border: 1px solid rgba(210, 171, 70, 0.65);
+    border-radius: 3px;
+    color: #ffffff;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.75), inset 0 0 35px rgba(210,171,70,0.04);
+    box-sizing: border-box;
+}
+.amount-modal .amount-popup::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 15%;
+    right: 15%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #b99132, #efd276, #b99132, transparent);
+}
+.amount-modal .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #c9a84f;
+    font-size: 24px;
+    line-height: 30px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.amount-modal .close-btn:hover { color: #ffffff; transform: rotate(90deg); }
+.amount-modal .popup-label {
+    margin: 0 0 9px;
+    color: #c9a84f;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: uppercase;
+}
+.amount-modal .popup-title {
+    margin: 0;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+}
+.amount-modal .gold-line {
+    width: 55px;
+    height: 1px;
+    margin: 18px auto 28px;
+    background: linear-gradient(90deg, transparent, #d1aa4b, transparent);
+}
+.amount-modal .field {
+    position: relative;
+    width: 100%;
+    margin-bottom: 22px;
+}
+.amount-modal .field span {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    z-index: 2;
+    color: #c9a84f;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.amount-modal .field input {
+    width: 100%;
+    height: 58px;
+    padding: 0 18px 0 65px !important;
+    border: 1px solid rgba(201,168,79,0.5);
+    outline: none;
+    background: rgba(255,255,255,0.045);
+    color: #fff;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+.amount-modal .field input::placeholder { color: rgba(255,255,255,0.35); }
+.amount-modal .field input:focus {
+    border-color: #d6b457;
+    background: rgba(201,168,79,0.07);
+    box-shadow: 0 0 0 3px rgba(201,168,79,0.08);
+}
+.amount-modal .field input::-webkit-inner-spin-button,
+.amount-modal .field input::-webkit-outer-spin-button { margin: 0; appearance: none; }
+.amount-modal .field input[type="number"] { appearance: textfield; }
+.amount-modal .pay-btn {
+    display: block;
+    width: 100%;
+    height: 54px;
+    margin: 0;
+    padding: 0 20px;
+    border: 1px solid #d1ac4d;
+    border-radius: 0;
+    background: linear-gradient(135deg, #b88d27, #d8b452, #b88d27);
+    color: #111111;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+.amount-modal .pay-btn:hover {
+    background: linear-gradient(135deg, #d8b452, #efd27a, #d8b452);
+    box-shadow: 0 8px 25px rgba(201,168,79,0.25);
+}
+.amount-modal .pay-btn:active { transform: translateY(1px); }
+.amount-modal .pay-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.online-payment-loader {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255,255,255,0.4);
+    border-top: 3px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (max-width: 480px) {
+    .amount-modal { padding: 15px; }
+    .amount-modal .amount-popup { width: 100%; max-width: 100%; padding: 34px 24px 28px; }
+    .amount-modal .popup-title { font-size: 26px; }
+}
 </style>
   <!-- Google Analytics placeholder -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID">
@@ -6008,6 +6165,7 @@ img {
       <li><a href="#" data-page="page-gallery">Gallery</a></li>
       <li><a href="#" data-page="page-explore">Explore</a></li>
       <li><a href="#" data-page="page-contact">Contact</a></li>
+      <li><a href="#" class="btn btn-primary" style="background:transparent!important;border:2px solid #d4aa32!important;color:#fff!important;" onclick="event.preventDefault();openAmountModal();">Pay Now</a></li>
       <li><a href="https://niloraresort.bookus.direct/" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-book" onclick="window.open('https://niloraresort.bookus.direct/', '_blank', 'noopener,noreferrer'); return false;">Book Now</a></li>
     </ul>
   </div>
@@ -8301,6 +8459,28 @@ img {
   </div>
 </footer>
 
+<!-- Payment Modal -->
+<div class="amount-modal" id="amountModal">
+    <div class="amount-popup" role="dialog" aria-modal="true" aria-labelledby="amountModalTitle">
+        <button type="button" class="close-btn" aria-label="Close" onclick="closeAmountModal()">&times;</button>
+        <div class="popup-label">Nilora Resort Payment</div>
+        <h2 class="popup-title" id="amountModalTitle">Enter Amount</h2>
+        <div class="gold-line"></div>
+        <div class="field">
+            <span>✉</span>
+            <input type="email" id="paymentEmail" name="email" placeholder="Enter your email" autocomplete="email" required>
+        </div>
+        <div class="field">
+            <span>AUD</span>
+            <input type="number" id="paymentAmount" name="amount" placeholder="Enter amount" min="1" step="0.01" inputmode="decimal" autocomplete="off">
+        </div>
+        <button type="button" id="continueBtn" class="pay-btn" onclick="submitAmount()">
+            <span id="continueText">Continue</span>
+            <span id="continueLoader" class="online-payment-loader"></span>
+        </button>
+    </div>
+</div>
+
 <script>
 /* ============================================
    NILORA RESORT - MAIN JAVASCRIPT
@@ -9673,6 +9853,36 @@ var PIN_IMAGES = {
   modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
 })();
+
+function openAmountModal() {
+    var modal = document.getElementById('amountModal');
+    var amountInput = document.getElementById('paymentAmount');
+    if (!modal) return;
+    modal.style.display = 'flex';
+    setTimeout(function() { if (amountInput) amountInput.focus(); }, 100);
+}
+function closeAmountModal() {
+    var modal = document.getElementById('amountModal');
+    if (modal) modal.style.display = 'none';
+}
+function submitAmount() {
+    var paymentAmount = document.getElementById('paymentAmount');
+    var paymentEmail = document.getElementById('paymentEmail');
+    var amount = paymentAmount.value.trim();
+    var email = paymentEmail.value.trim();
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === '') { alert('Please enter your email.'); paymentEmail.focus(); return false; }
+    if (!emailPattern.test(email)) { alert('Please enter a valid email address.'); paymentEmail.focus(); return false; }
+    if (amount === '') { alert('Please enter an amount.'); paymentAmount.focus(); return false; }
+    if (parseFloat(amount) <= 0) { alert('Please enter a valid amount.'); paymentAmount.focus(); return false; }
+    var button = document.getElementById('continueBtn');
+    var text = document.getElementById('continueText');
+    var loader = document.getElementById('continueLoader');
+    button.disabled = true;
+    text.textContent = 'Processing...';
+    loader.style.display = 'inline-block';
+    window.location.href = 'http://localhost:8085/nilora/onlinepayment/payment.php?amount=' + encodeURIComponent(amount) + '&email=' + encodeURIComponent(email);
+}
 </script>
 
 </body>
