@@ -1,13 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require __DIR__ . '/PHPMailer/src/Exception.php';
-require __DIR__ . '/PHPMailer/src/PHPMailer.php';
-require __DIR__ . '/PHPMailer/src/SMTP.php';
-
 // Honeypot check
 if (!empty($_POST['website'])) {
     echo json_encode(['success' => true, 'message' => 'Thank you! Your message has been sent.']);
@@ -34,44 +27,41 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$name = htmlspecialchars($first . ' ' . $last);
+$name        = strip_tags($first . ' ' . $last);
+$email_safe  = strip_tags($email);
+$phone_safe  = strip_tags($phone);
+$subj_safe   = strip_tags($subject);
+$msg_safe    = strip_tags($message);
 
-$mail = new PHPMailer(true);
+$to      = 'booking@nilora.com.au';
+$subjectLine = "[{$subj_safe}] Enquiry from {$name} - NILORA Resort";
 
-try {
-    $mail->isSMTP();
-    $mail->Host       = 'mail.nilora.com.au';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'booking@nilora.com.au';
-    $mail->Password   = 'ENTER_PASSWORD_HERE';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port       = 465;
+$body  = "You have received a new enquiry from the NILORA Resort website.\r\n\r\n";
+$body .= "-------------------------------------------\r\n";
+$body .= "Name:    {$name}\r\n";
+$body .= "Email:   {$email_safe}\r\n";
+$body .= "Phone:   " . ($phone_safe ?: 'Not provided') . "\r\n";
+$body .= "Subject: {$subj_safe}\r\n";
+$body .= "-------------------------------------------\r\n\r\n";
+$body .= "Message:\r\n{$msg_safe}\r\n\r\n";
+$body .= "-------------------------------------------\r\n";
+$body .= "Sent from: nilora.com.au/contact\r\n";
+$body .= "Time: " . date('d M Y, H:i T') . "\r\n";
 
-    $mail->setFrom('booking@nilora.com.au', 'NILORA Resort Website');
-    $mail->addAddress('booking@nilora.com.au', 'NILORA Booking');
-    $mail->addReplyTo($email, $name);
+$headers  = "From: noreply@nilora.com.au\r\n";
+$headers .= "Reply-To: {$email_safe}\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    $mail->Subject = "[{$subject}] Enquiry from {$name} – NILORA Resort";
+$logFile = __DIR__ . '/contact_error.log';
 
-    $mail->Body =
-        "You have received a new enquiry from the NILORA Resort website.\n\n" .
-        "-------------------------------------------\n" .
-        "Name:    {$name}\n" .
-        "Email:   {$email}\n" .
-        "Phone:   " . (htmlspecialchars($phone) ?: 'Not provided') . "\n" .
-        "Subject: " . htmlspecialchars($subject) . "\n" .
-        "-------------------------------------------\n\n" .
-        "Message:\n" . htmlspecialchars($message) . "\n\n" .
-        "-------------------------------------------\n" .
-        "Sent from: nilora.com.au/contact\n" .
-        "Time: " . date('d M Y, H:i T') . "\n";
+$result = mail($to, $subjectLine, $body, $headers);
 
-    $mail->send();
+if ($result) {
     echo json_encode(['success' => true, 'message' => "Thank you! Your message has been sent. We'll be in touch within 24 hours."]);
-
-} catch (Exception $e) {
-    $logFile = __DIR__ . '/contact_error.log';
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " MAILER ERROR: " . $mail->ErrorInfo . "\n", FILE_APPEND);
+} else {
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " mail() returned false\n", FILE_APPEND);
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Unable to send your message. Please email us directly at booking@nilora.com.au']);
 }
