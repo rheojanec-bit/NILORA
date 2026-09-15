@@ -1,0 +1,396 @@
+<title>NILORA Staff Portal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --navy:       #0C202D;
+  --navy-mid:   #2A4055;
+  --navy-light: #3d5a70;
+  --gold:       #C89F35;
+  --gold-light: #d4b050;
+  --cream:      #F3EFE7;
+  --bg:         #F8F6F1;
+  --surface:    #ffffff;
+  --border:     rgba(12,32,45,0.10);
+  --text:       #0C202D;
+  --text-mid:   #2A4055;
+  --text-soft:  #5a7080;
+  --shadow:     0 2px 16px rgba(12,32,45,0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #0a1a26;
+    --surface:  #0f2233;
+    --border:   rgba(200,159,53,0.12);
+    --text:     #f0ede6;
+    --text-mid: #b8cad6;
+    --text-soft:#7a99aa;
+    --cream:    #162838;
+    --shadow:   0 2px 16px rgba(0,0,0,0.3);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:       #0a1a26;
+  --surface:  #0f2233;
+  --border:   rgba(200,159,53,0.12);
+  --text:     #f0ede6;
+  --text-mid: #b8cad6;
+  --text-soft:#7a99aa;
+  --cream:    #162838;
+  --shadow:   0 2px 16px rgba(0,0,0,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy);
+  padding: 1.1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+}
+.header-logo-mark {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+.header-wordmark {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.header-wordmark span {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 3px;
+}
+.header-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,159,53,0.4);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* ── PAGE TITLE ── */
+.page-title {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.page-title h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  text-wrap: balance;
+  margin-bottom: 0.35rem;
+}
+.page-title p {
+  font-size: 0.875rem;
+  color: var(--text-soft);
+}
+
+/* ── HANDBOOK CARD ── */
+.handbook-card {
+  background: var(--navy);
+  border-radius: 6px;
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.handbook-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.handbook-info h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+.handbook-info p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+}
+.handbook-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.handbook-btn:hover { background: var(--gold-light); }
+.handbook-btn svg { flex-shrink: 0; }
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+/* ── CATEGORY GROUPS ── */
+.categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.category {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+}
+.category-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy-mid);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .category-title { color: var(--text-mid); }
+}
+:root[data-theme="dark"] .category-title { color: var(--text-mid); }
+
+.category-title svg { color: var(--gold); flex-shrink: 0; }
+.link-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+.link-list li a {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  text-decoration: none;
+  line-height: 1.45;
+  transition: color 0.15s;
+}
+.link-list li a:hover { color: var(--gold); }
+.link-list li a::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin-top: 0.55em;
+  flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+.staff-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  .categories { grid-template-columns: 1fr; }
+  .handbook-card { flex-direction: column; align-items: flex-start; }
+  .site-header { padding: 1rem 1.25rem; }
+  .main { padding: 1.75rem 1.25rem 3rem; }
+}
+</style>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="../index.html" class="header-brand">
+    <svg class="header-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" fill="#0C202D"/>
+      <circle cx="18" cy="18" r="9" fill="none" stroke="#C89F35" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="3.5" fill="#C89F35"/>
+      <line x1="18" y1="9" x2="18" y2="6" stroke="#C89F35" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="18" y1="27" x2="18" y2="30" stroke="#C89F35" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="9" y1="18" x2="6" y2="18" stroke="#C89F35" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="27" y1="18" x2="30" y2="18" stroke="#C89F35" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div class="header-wordmark">
+      NILORA
+      <span>Resorts &amp; Hotels</span>
+    </div>
+  </a>
+  <div class="header-badge">Staff Portal</div>
+</header>
+
+<!-- Main Content -->
+<main class="main">
+
+  <div class="page-title">
+    <h1>Staff Resources</h1>
+    <p>Internal documents and training materials for NILORA team members.</p>
+  </div>
+
+  <!-- Handbook -->
+  <div class="handbook-card">
+    <div class="handbook-info">
+      <h2>Staff Policies Handbook</h2>
+      <p>NILORA Resorts &amp; Hotels — current edition</p>
+    </div>
+    <a href="Nilora_Staff_Policies_Handbook.pdf" class="handbook-btn" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </a>
+  </div>
+
+  <!-- Training Resources -->
+  <p class="section-label">WHS Training Resources</p>
+
+  <div class="categories">
+
+    <!-- Fire Safety -->
+    <div class="category">
+      <div class="category-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        Fire Safety
+      </div>
+      <ul class="link-list">
+        <li><a href="https://www.youtube.com/watch?v=zvU3gQnOsGM" target="_blank" rel="noopener">Fire Extinguishers Training Video — AUSTRALIAN Version (Safetycare)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=FAmOic7q1IM" target="_blank" rel="noopener">How To Use A Fire Extinguisher — Fire Training Australia</a></li>
+        <li><a href="https://www.youtube.com/watch?v=AXvv8kuuPD0" target="_blank" rel="noopener">How to use a Fire Blanket — Fire Training Australia</a></li>
+      </ul>
+    </div>
+
+    <!-- First Aid -->
+    <div class="category">
+      <div class="category-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        First Aid
+      </div>
+      <ul class="link-list">
+        <li><a href="https://www.youtube.com/watch?v=ckehqmpikCg" target="_blank" rel="noopener">Know First Aid | St John Ambulance NSW</a></li>
+        <li><a href="https://www.youtube.com/channel/UCEJ0ZRqXuJrHhfhDVVUSjkw" target="_blank" rel="noopener">St John Ambulance Australia (NSW)</a></li>
+      </ul>
+    </div>
+
+    <!-- Manual Handling & Hazardous Materials -->
+    <div class="category">
+      <div class="category-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Manual Tasks &amp; Hazardous Materials
+      </div>
+      <ul class="link-list">
+        <li><a href="https://www.youtube.com/watch?v=UvnDsFdhwUc" target="_blank" rel="noopener">Stop the Strain | Hazardous Manual Tasks — SafeWork SA</a></li>
+        <li><a href="https://www.youtube.com/watch?v=2DUQUwxoLqM" target="_blank" rel="noopener">Safety Data Sheets — An Introduction (Safetycare)</a></li>
+        <li><a href="https://www.safework.nsw.gov.au/__data/assets/pdf_file/0017/50084/Code-of-practice_Preparation_of_safety_data_sheets_for_hazardous_chemicals_2022.pdf" target="_blank" rel="noopener">SafeWork NSW SDS Code of Practice</a></li>
+      </ul>
+    </div>
+
+    <!-- PPE -->
+    <div class="category">
+      <div class="category-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        PPE
+      </div>
+      <ul class="link-list">
+        <li><a href="https://www.youtube.com/watch?v=rg1GJluag6w" target="_blank" rel="noopener">PPE: An Introduction (Safetycare)</a></li>
+      </ul>
+    </div>
+
+    <!-- SafeWork Resources -->
+    <div class="category">
+      <div class="category-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        SafeWork Resources
+      </div>
+      <ul class="link-list">
+        <li><a href="https://www.safework.nsw.gov.au/advice-and-resources/video-library" target="_blank" rel="noopener">SafeWork NSW Video Library</a></li>
+        <li><a href="https://www.youtube.com/watch?v=_tg5WptfK9s" target="_blank" rel="noopener">About Safe Work Australia: An Animation</a></li>
+      </ul>
+    </div>
+
+    <!-- WHS Templates -->
+    <div class="category">
+      <div class="category-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        WHS Templates &amp; Forms
+      </div>
+      <ul class="link-list">
+        <li><a href="https://www.rosterelf.com/free-hr-templates/safety-and-compliance-policies/whs-policy" target="_blank" rel="noopener">RosterElf Free WHS Policy Template</a></li>
+        <li><a href="https://spiresafety.com.au/resources/whs-policy-template/" target="_blank" rel="noopener">Spire Safety Free WHS Policy Template</a></li>
+        <li><a href="https://safetyculture.com/library/hospitality/executive-housekeeper-whs-and-induction-acknowledgement-form-hmgyrarpmabqbuxq" target="_blank" rel="noopener">SafetyCulture WHS Induction Acknowledgement Form</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer class="staff-footer">
+    <span>© 2026 NILORA Resorts &amp; Hotels P/L &nbsp;·&nbsp; Staff Portal</span>
+    <span>For internal use only</span>
+  </footer>
+
+</main>
