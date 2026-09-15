@@ -8526,7 +8526,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==================== PAGE NAVIGATION ====================
-  function showPage(pageId) {
+  const pageSlugMap = {
+    'page-home': '/',
+    'page-accommodation': '/accommodation',
+    'page-facilities': '/facilities',
+    'page-things-to-do': '/things-to-do',
+    'page-events': '/wellness',
+    'page-gallery': '/gallery',
+    'page-explore': '/explore',
+    'page-contact': '/contact',
+    'page-offers': '/offers'
+  };
+  const slugPageMap = {};
+  Object.entries(pageSlugMap).forEach(([k,v]) => slugPageMap[v] = k);
+
+  function showPage(pageId, pushUrl) {
     document.querySelectorAll('.page').forEach(p => {
       p.classList.remove('active');
       p.style.display = 'none';
@@ -8536,8 +8550,11 @@ document.addEventListener('DOMContentLoaded', () => {
       target.classList.add('active');
       target.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Re-trigger animations
       setTimeout(() => initObserver(), 100);
+    }
+    if (pushUrl !== false) {
+      const slug = pageSlugMap[pageId] || '/';
+      history.pushState({ pageId }, '', slug);
     }
   }
 
@@ -8554,6 +8571,27 @@ document.addEventListener('DOMContentLoaded', () => {
       if (matchingNav) matchingNav.classList.add('active-nav');
     });
   });
+
+  // Handle browser back/forward
+  window.addEventListener('popstate', (e) => {
+    const pageId = (e.state && e.state.pageId) || slugPageMap[location.pathname] || 'page-home';
+    showPage(pageId, false);
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-nav'));
+    const matchingNav = document.querySelector(`.nav-links a[data-page="${pageId}"]`);
+    if (matchingNav) matchingNav.classList.add('active-nav');
+  });
+
+  // On initial load, show page matching current URL path
+  (function() {
+    const path = location.pathname.replace(/\/+$/, '') || '/';
+    const initialPage = slugPageMap[path] || 'page-home';
+    if (initialPage !== 'page-home') {
+      showPage(initialPage, false);
+      history.replaceState({ pageId: initialPage }, '', path);
+    } else {
+      history.replaceState({ pageId: 'page-home' }, '', '/');
+    }
+  })();
 
   // ==================== SCROLL ANIMATIONS ====================
   function initObserver() {

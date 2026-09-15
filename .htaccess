@@ -1,0 +1,13 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Don't rewrite existing files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Exclude onlinepayment and staff folders
+RewriteRule ^(onlinepayment|staff|blog|assets)(/.*)?$ - [L]
+
+# Route everything else to index.html
+RewriteRule ^ index.html [L]
