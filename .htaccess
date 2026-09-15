@@ -6,5 +6,8 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
+# Exclude real subfolders
+RewriteRule ^(staff|onlinepayment|blog|assets|PHPMailer)(/.*)?$ - [L]
+
 # Route everything else to index.html
 RewriteRule ^ index.html [L]
