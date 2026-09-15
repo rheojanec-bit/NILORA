@@ -70,6 +70,8 @@ try {
     echo json_encode(['success' => true, 'message' => "Thank you! Your message has been sent. We'll be in touch within 24 hours."]);
 
 } catch (Exception $e) {
+    $logFile = __DIR__ . '/contact_error.log';
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " MAILER ERROR: " . $mail->ErrorInfo . "\n", FILE_APPEND);
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Unable to send your message. Please email us directly at booking@nilora.com.au']);
 }
